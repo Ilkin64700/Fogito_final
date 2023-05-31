@@ -1,0 +1,310 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 250px;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+  padding-top: 50px;
+  transition: all 0.5s ease;
+}
+.sidebar .upper-part {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  padding-bottom: 30px;
+}
+.sidebar .upper-part .three-lines {
+  padding-left: 15px;
+}
+.sidebar .upper-part .three-lines i {
+  font-size: 25px;
+  color: deepskyblue;
+  cursor: pointer;
+}
+.sidebar .upper-part .three-lines .bi-list-nested::before {
+  vertical-align: 0;
+}
+.sidebar .upper-part .three-lines .bi-list {
+  text-align: center;
+  width: 50px;
+}
+.sidebar .sidebar-navigation ul {
+  list-style: none;
+}
+.sidebar .sidebar-navigation ul li {
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 20px;
+  display: flex;
+  justify-content: flex-start;
+  cursor: pointer;
+}
+.sidebar .sidebar-navigation ul li .icon-sidebar {
+  vertical-align: sub;
+  margin-right: 5px;
+}
+
+.setnavcolor {
+  color: deepskyblue;
+}
+
+.customnavbar {
+  margin-top: 50px;
+  margin-left: 150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.customnavbar .threedropdown {
+  display: flex;
+  justify-content: space-evenly;
+  width: 15%;
+}
+.customnavbar .threedropdown .btn .draweroutsidebutton {
+  font-size: 25px;
+}
+.customnavbar .threedropdown .palette {
+  height: 0;
+  padding: 0;
+  line-height: 0;
+  border-width: 0;
+}
+.customnavbar .threedropdown .btn-primary {
+  transform: translateX(250%);
+  margin: 10px 0;
+}
+
+.noneimageparagraph {
+  display: none;
+}
+
+.nonespan {
+  display: none;
+}
+
+.editdropdownicon {
+  font-size: 25px;
+}
+
+.dropdownleftpositionone {
+  top: 50px;
+  left: 18px;
+  height: 200px;
+  width: 200px;
+}
+
+.dropdownleftpositiontwo {
+  top: 30px;
+  left: -170px;
+  height: 150px;
+  width: 200px;
+}
+
+.dropdownleftpositionthree {
+  top: 30px;
+  right: -5px;
+  width: auto;
+  height: auto;
+}
+
+.language-icons {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.notifications-icons {
+  margin-right: 10px;
+}
+
+.editpadding {
+  padding-right: 20px;
+}
+
+.nobutton {
+  display: none;
+}
+
+.cart-overlay {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: flex-end;
+}
+.cart-overlay .cart-container {
+  padding: 30px 24px;
+  max-width: 480px;
+  min-width: 320px;
+  width: 100%;
+  background-color: #f9f9f9;
+  transition: all ease-in-out 5s;
+  animation: drawerAnimation 0.3s ease-out backwards;
+}
+.cart-overlay .cart-container .cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cart-overlay .cart-container .cart-header a {
+  cursor: pointer;
+}
+.cart-overlay .cart-container .cart-header a .closebutton {
+  color: #222;
+  font-size: 30px;
+}
+.cart-overlay .allmoods .choosingmood {
+  padding: 30px 0;
+}
+.cart-overlay .allmoods .lightdarkmoods {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+}
+.cart-overlay .allmoods .lightdarkmoods .lightmood {
+  padding-bottom: 30px;
+  cursor: pointer;
+}
+.cart-overlay .allmoods .lightdarkmoods .lightmood span {
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  background-color: red;
+  border-radius: 25px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.cart-overlay .allmoods .lightdarkmoods .darkmood {
+  cursor: pointer;
+}
+.cart-overlay .allmoods .lightdarkmoods .darkmood span {
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  background-color: black;
+  border-radius: 25px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.cart-overlay .allmoods .lightdarkmoods ul {
+  list-style: none;
+}
+.cart-overlay .allmoods .lightdarkmoods ul li {
+  margin-bottom: 20px;
+  width: 100%;
+  cursor: pointer;
+}
+.cart-overlay .allmoods .lightdarkmoods ul li .paint-icons {
+  font-size: 30px;
+  margin-right: 10px;
+}
+
+@keyframes drawerAnimation {
+  from {
+    transform: translateX(20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.bgcolor {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.dropdown .dropdown-button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  cursor: pointer;
+}
+.dropdown .dropdown-button img {
+  border-radius: 25px;
+  border: 2px solid white;
+  outline: 2px solid blue;
+}
+.dropdown .dropdown-button p {
+  padding-left: 10px;
+  font-weight: 500;
+}
+.dropdown .dropdown-button span {
+  position: absolute;
+  right: -19px;
+  top: -19px;
+  background-color: dodgerblue;
+  border-radius: 25px;
+  padding: 3px 7px;
+  text-align: center;
+  color: white;
+}
+.dropdown .dropdown-content {
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.dropdown .dropdown-content .dropdown-item {
+  padding-top: 12px;
+  padding-left: 15px;
+  height: 50px;
+}
+.dropdown .dropdown-content .dropdown-item .btn {
+  padding: 10px 14px;
+}
+.dropdown .dropdown-content .dropdown-item i {
+  padding-left: 70px;
+  font-size: 20px;
+  color: green;
+}
+.dropdown .dropdown-content .dropdown-item:hover {
+  background-color: #dbf5e4;
+}
+.dropdown .dropdown-content .dropdown-item .usermenu-icons {
+  margin-right: 10px;
+}
+.dropdown .dropdown-content .dropdown-item p {
+  display: inline-block;
+}
+
+.dashboard {
+  padding-top: 50px;
+}
+.dashboard .dashboard-header {
+  width: 85%;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+.dashboard .container .row .col-6 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.dashboard .container .row .col-6 .col-5 {
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+  margin-bottom: 30px;
+  margin-right: 30px;
+  min-height: 100px;
+  border-radius: 5px;
+  display: flex;
+}
+.dashboard .container .row .col-6 .col-5 .leftcontent {
+  padding: 20px 7px 0 10px;
+}
+.dashboard .container .row .col-6 .col-5 .leftcontent .icon .statistics-icons {
+  font-size: 40px;
+}
+.dashboard .container .row .col-6 .col-5 .rightcontent {
+  padding-top: 5px;
+}
+.dashboard .container .row .col-6 .col-5 .rightcontent .count {
+  font-size: 30px;
+  font-weight: 500;
+  padding-bottom: 5px;
+}/*# sourceMappingURL=style.css.map */
