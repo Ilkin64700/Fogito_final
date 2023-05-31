@@ -26,6 +26,8 @@ const Dropdown = ({
       }
     };
     document.addEventListener("mousedown", closeOpenDropdown);
+
+    return ()=>document.removeEventListener("mousedown", closeOpenDropdown)
   }, []);
 
   return (
@@ -51,10 +53,10 @@ const Dropdown = ({
         {showDropdDown && (
           <div className={`dropdown-content ${dropdownleftposition}`}>
             {arr.map((item, index) => (
-              <div
+              <div key={item.code}
                 onClick={() => {
                   setShowDropDown(false);
-                  setLanguage(setLanguage===item.language ? item.language : setLanguage)
+                  setLanguage(item.code)
 
                 }}
                 className="dropdown-item"

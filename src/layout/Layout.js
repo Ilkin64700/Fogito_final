@@ -8,7 +8,7 @@ const [opensidebar, setOpenSideBar] = useState(false)
     <>
       <LeftDrawer opensidebar={opensidebar} setOpenSideBar={setOpenSideBar} />
       <Navbar opensidebar={opensidebar} setOpenSideBar={setOpenSideBar} />
-      <main>{children}</main>
+      <main style={{ marginLeft: opensidebar ? "300px" : "" }}>{children}</main>
     </>
   );
 };

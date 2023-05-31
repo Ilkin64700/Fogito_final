@@ -30,16 +30,19 @@ const Navbar = ({ opensidebar, setOpenSideBar }) => {
   ];
   const languages = [
     {
+      code: "aze",
       icon: <TbFlag3Filled className="language-icons" />,
       language: "Azerbaijani",
     },
     {
+      code: "tur",
       icon: <TbFlag3Filled className="language-icons" />,
       language: "Turkish",
     },
     {
+      code: "eng",
       icon: <TbFlag3Filled className="language-icons" />,
-      language: "Turkmen",
+      language: "English",
     },
   ];
 
@@ -67,7 +70,7 @@ const Navbar = ({ opensidebar, setOpenSideBar }) => {
     },
   ];
 
-  const {language,setLanguage,weblanguages} =useContext(LangContext)
+  const { language, setLanguage, weblanguages } = useContext(LangContext);
   const [openCart, setOpenCart] = useState(false);
 
   return (
@@ -93,7 +96,6 @@ const Navbar = ({ opensidebar, setOpenSideBar }) => {
             <LuArrowUpLeftFromCircle className="editdropdownicon" />
           }
           dropdownleftposition="dropdownleftpositiontwo"
-        
         />
         <Dropdown
           editpadding="editpadding"

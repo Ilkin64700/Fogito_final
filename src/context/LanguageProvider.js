@@ -19,7 +19,7 @@ const LanguageProvider = ({ children }) => {
       dashboard:"Panel"
     },
   };
-  const [language, setLanguage] = useState();
+  const [language, setLanguage] = useState("en");
 
   return (
     <LangContext.Provider value={{ language, setLanguage, weblanguages }}>

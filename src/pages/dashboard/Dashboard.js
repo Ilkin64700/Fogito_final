@@ -95,8 +95,7 @@ const Dashboard = () => {
               </div>
             ))}
           </div>
-          <div className="col-6">
-          <div id="chart" />
+          <div className="col-6 editapex">
             <ApexCharts options={options} series={options.series} type="line" width={500}/>
           </div>
         </div>
