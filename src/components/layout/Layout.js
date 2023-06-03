@@ -7,8 +7,8 @@ const [opensidebar, setOpenSideBar] = useState(false)
   return (
     <>
       <LeftDrawer opensidebar={opensidebar} setOpenSideBar={setOpenSideBar} />
-      <Navbar opensidebar={opensidebar} setOpenSideBar={setOpenSideBar} />
-      <main style={{ marginLeft: opensidebar ? "300px" : "" }}>{children}</main>
+      <Navbar  opensidebar={opensidebar} setOpenSideBar={setOpenSideBar} />
+      <main className="editmain" style={{ marginLeft: opensidebar ? "350px" : "120px" }}>{children}</main>
     </>
   );
 };

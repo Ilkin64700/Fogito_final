@@ -3,10 +3,10 @@
   top: 0;
   left: 0;
   height: 100vh;
-  width: 250px;
+  width: 300px;
   box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
   padding-top: 50px;
-  transition: all 0.5s ease;
+  transition: all 0.5s;
   .upper-part {
     display: flex;
     justify-content: flex-start;
@@ -22,8 +22,8 @@
         cursor: pointer;
       }
       .bi-list-nested {
-        &::before{
-            vertical-align: 0;
+        &::before {
+          vertical-align: 0;
         }
       }
       .bi-list {
@@ -35,17 +35,21 @@
   .sidebar-navigation {
     ul {
       list-style: none;
-
       li {
         margin-bottom: 20px;
         font-weight: 500;
         font-size: 20px;
         display: flex;
         justify-content: flex-start;
+        transition: all 0.5s;
         cursor: pointer;
         .icon-sidebar {
           vertical-align: sub;
           margin-right: 5px;
+        }
+        a {
+          text-decoration: none;
+          color: black;
         }
       }
     }

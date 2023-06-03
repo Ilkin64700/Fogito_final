@@ -1,0 +1,82 @@
+.dashboard-customers {
+  padding-top: 40px;
+  .dashboard-header-customers {
+    margin: 0 auto;
+    padding-bottom: 60px;
+  }
+  .container-fluid {
+    .row {
+      .tablestyle {
+        margin: 0 auto;
+        margin-bottom: 1rem;
+        width: 90%;
+        margin-right: 20%;
+        box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+        tr {
+          th {
+            padding: 20px 8px;
+          }
+        }
+        tr {
+          &:nth-child(even) {
+            background-color: #f2f2f2;
+          }
+          &:hover {
+            background-color: #ddd;
+          }
+          td {
+            padding: 8px;
+            input[type="checkbox"] {
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+        .infotableheader{
+          width: 7%;
+        }
+      }
+
+      .button-list {
+        text-align: center;
+        margin-bottom: 3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%;
+        padding-top: 10px;
+        .leftcontent {
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+          width: 16%;
+         select{
+          border: none;
+         }
+        }
+        .rightcontent {
+          .button-previous {
+            border: none;
+            background-color: white;
+            padding: 8px 16px;
+          }
+          .button-next {
+            border: none;
+            background-color: white;
+            padding: 8px 16px;
+          }
+          .button-item {
+            border: none;
+            background-color: white;
+            padding: 8px 16px;
+            border-radius: 15px
+          }
+        }
+      }
+    }
+  }
+}
+.buttonbgcolor {
+  background-color: red !important;
+  color: white;
+}

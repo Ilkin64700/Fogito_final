@@ -1,18 +1,26 @@
 .dashboard {
   padding-top: 50px;
   .dashboard-header {
-    width: 85%;
     margin: 0 auto;
     padding-bottom: 50px;
   }
-  .container {
+  .container-fluid {
     .row {
-      .editapex{
+      .editapex {
         z-index: -1;
+        .editheightapex{
+          box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+          border-radius: 10px;
+          width: 600px;
+          padding: 10px 0;
+          max-height: 357px;
+
+        }
       }
       .col-6 {
         display: flex;
         flex-wrap: wrap;
+        min-height: 385px;
         .col-5 {
           box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
           margin-bottom: 30px;
@@ -20,6 +28,29 @@
           min-height: 100px;
           border-radius: 5px;
           display: flex;
+          position: relative;
+          transition: all 0.5s ease-in-out;
+          overflow: hidden;
+          &:hover {
+            color: white;
+          }
+          &::after {
+            content: "";
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            background-color: blue;
+            transition: all 0.5s ease;
+            width: 100%;
+            height: 100%;
+          }
+          &:hover::after {
+            top: 0;
+            left: 0;
+            clip-path: ellipse(155px 140px at 10% -6%);
+            transition: all 0.5s ease;
+            z-index: -1;
+          }
           .leftcontent {
             padding: 20px 7px 0 10px;
             .icon {
@@ -42,4 +73,9 @@
       }
     }
   }
+}
+
+.editmain {
+  transition: all 0.5s;
+  
 }

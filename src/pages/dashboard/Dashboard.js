@@ -1,86 +1,89 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BiShoppingBag, BiDollarCircle, BiReceipt } from "react-icons/bi";
 import { LuShoppingCart } from "react-icons/lu";
 import ApexCharts from "react-apexcharts";
 import { LangContext } from "../../context/LanguageProvider";
-
 const Dashboard = () => {
+
+  const {language,weblanguages} =useContext(LangContext)
+
   const statistics = [
     {
       icon: <BiShoppingBag className="statistics-icons" />,
       count: "1,995",
-      title: "Total sales",
+      title: weblanguages[language]?.totalsales,
     },
     {
       icon: <LuShoppingCart className="statistics-icons" />,
       count: "2,001",
-      title: "Daily visits",
+      title: weblanguages[language]?.dailyvisits,
     },
     {
       icon: <BiDollarCircle className="statistics-icons" />,
       count: "$2,632",
-      title: "Total income",
+      title: weblanguages[language]?.totalincome,
     },
     {
       icon: <BiReceipt className="statistics-icons" />,
       count: "1,711",
-      title: "Total orders",
+      title: weblanguages[language]?.totalorders,
     },
   ];
 
-  var options = {
+  const [options] =useState({
     series: [
       {
-        name: "Desktops",
-        data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
+        name: "Online Customer",
+        data: [31, 40, 28, 51, 42, 109, 100],
+      },
+      {
+        name: "Story Customer",
+        data: [11, 32, 45, 32, 34, 52, 41],
       },
     ],
     chart: {
-      height: 350,
-      type: "line",
-      zoom: {
-        enabled: false,
-      },
+      height: 300,
+      type: "area",
     },
     dataLabels: {
       enabled: false,
     },
     stroke: {
-      curve: "straight",
-    },
-    title: {
-      text: "Product Trends by Month",
-      align: "left",
-    },
-    grid: {
-      row: {
-        colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
-        opacity: 0.5,
-      },
+      curve: "smooth",
     },
     xaxis: {
+      type: "datetime",
       categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
+        "2018-09-19T00:00:00.000Z",
+        "2018-09-19T01:30:00.000Z",
+        "2018-09-19T02:30:00.000Z",
+        "2018-09-19T03:30:00.000Z",
+        "2018-09-19T04:30:00.000Z",
+        "2018-09-19T05:30:00.000Z",
+        "2018-09-19T06:30:00.000Z",
       ],
     },
-  };
+    tooltip: {
+      x: {
+        format: "dd/MM/yy HH:mm",
+      },
+    },
+  });
 
-  const {language,setLanguage,weblanguages} =useContext(LangContext)
+  useEffect(() => {
+    localStorage.setItem("localization", language);
+  }, [language]);
+
+
+
 
   return (
     <section className="dashboard">
+     
       <div className="dashboard-header">
-        <h3>Dashboard</h3>
+        <h3>{weblanguages[language].dashboard}</h3>
       </div>
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
           <div className="col-6">
             {statistics.map((item, index) => (
@@ -96,10 +99,11 @@ const Dashboard = () => {
             ))}
           </div>
           <div className="col-6 editapex">
-            <ApexCharts options={options} series={options.series} type="line" width={500}/>
+            <ApexCharts className="editheightapex" options={options} series={options.series} type="line" width={550}/>
           </div>
         </div>
       </div>
+      
     </section>
   );
 };

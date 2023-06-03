@@ -3,10 +3,10 @@
   top: 0;
   left: 0;
   height: 100vh;
-  width: 250px;
+  width: 300px;
   box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
   padding-top: 50px;
-  transition: all 0.5s ease;
+  transition: all 0.5s;
 }
 .sidebar .upper-part {
   display: flex;
@@ -38,11 +38,16 @@
   font-size: 20px;
   display: flex;
   justify-content: flex-start;
+  transition: all 0.5s;
   cursor: pointer;
 }
 .sidebar .sidebar-navigation ul li .icon-sidebar {
   vertical-align: sub;
   margin-right: 5px;
+}
+.sidebar .sidebar-navigation ul li a {
+  text-decoration: none;
+  color: black;
 }
 
 .setnavcolor {
@@ -55,6 +60,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: all 0.5s ease 0s;
 }
 .customnavbar .threedropdown {
   display: flex;
@@ -137,11 +143,10 @@
 }
 .cart-overlay .cart-container {
   padding: 30px 24px;
-  max-width: 480px;
+  max-width: 400px;
   min-width: 320px;
   width: 100%;
   background-color: #f9f9f9;
-  transition: all ease-in-out 5s;
   animation: drawerAnimation 0.3s ease-out backwards;
 }
 .cart-overlay .cart-container .cart-header {
@@ -166,19 +171,27 @@
   align-content: center;
 }
 .cart-overlay .allmoods .lightdarkmoods .lightmood {
-  padding-bottom: 30px;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  display: flex;
+  width: 80%;
+  padding: 10px 0 5px 10px;
   cursor: pointer;
 }
 .cart-overlay .allmoods .lightdarkmoods .lightmood span {
   height: 30px;
   width: 30px;
   display: inline-block;
-  background-color: red;
+  background-color: white;
   border-radius: 25px;
   vertical-align: middle;
   margin-right: 10px;
 }
 .cart-overlay .allmoods .lightdarkmoods .darkmood {
+  border-radius: 5px;
+  display: flex;
+  width: 80%;
+  padding: 10px 0 5px 10px;
   cursor: pointer;
 }
 .cart-overlay .allmoods .lightdarkmoods .darkmood span {
@@ -192,10 +205,13 @@
 }
 .cart-overlay .allmoods .lightdarkmoods ul {
   list-style: none;
+  padding-left: 0;
+  width: 80%;
 }
 .cart-overlay .allmoods .lightdarkmoods ul li {
+  padding: 10px 0 10px 10px;
+  border-radius: 5px;
   margin-bottom: 20px;
-  width: 100%;
   cursor: pointer;
 }
 .cart-overlay .allmoods .lightdarkmoods ul li .paint-icons {
@@ -216,6 +232,68 @@
 .bgcolor {
   background-color: dodgerblue;
   color: white;
+}
+
+.light {
+  background-color: white;
+}
+
+.dark {
+  background-color: black;
+  color: white;
+}
+.dark .sidebar {
+  box-shadow: 3px 3px 10px 6px;
+}
+.dark .dropdown .dropdown-content {
+  background-color: #252525;
+}
+.dark .dropdown .dropdown-content .dropdown-item:hover {
+  color: black;
+}
+.dark .customnavbar .threedropdown .palette {
+  color: white;
+}
+.dark .dashboard .container-fluid .row .col-6 .col-5 {
+  box-shadow: 3px 3px 10px 6px;
+}
+.dark .cart-overlay .cart-container {
+  transition: none;
+}
+.dark .cart-overlay .cart-container .cart-header {
+  color: black;
+}
+.dark .cart-overlay .cart-container .allmoods {
+  color: black;
+}
+
+.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.blue {
+  color: blue;
+}
+
+.red {
+  color: red;
+}
+
+.cyan {
+  color: cyan;
+}
+
+.green {
+  color: green;
+}
+
+.orange {
+  color: orange;
+}
+
+.deepskyblue {
+  color: deepskyblue;
 }
 
 .dropdown .dropdown-button {
@@ -249,6 +327,7 @@
   box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
   border-radius: 10px;
   margin-top: 5px;
+  z-index: 1;
   cursor: pointer;
 }
 .dropdown .dropdown-content .dropdown-item {
@@ -278,33 +357,143 @@
   padding-top: 50px;
 }
 .dashboard .dashboard-header {
-  width: 85%;
   margin: 0 auto;
   padding-bottom: 50px;
 }
-.dashboard .container .row .col-6 {
+.dashboard .container-fluid .row .editapex {
+  z-index: -1;
+}
+.dashboard .container-fluid .row .editapex .editheightapex {
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  width: 600px;
+  padding: 10px 0;
+  max-height: 357px;
+}
+.dashboard .container-fluid .row .col-6 {
   display: flex;
   flex-wrap: wrap;
+  min-height: 385px;
 }
-.dashboard .container .row .col-6 .col-5 {
+.dashboard .container-fluid .row .col-6 .col-5 {
   box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
   margin-bottom: 30px;
   margin-right: 30px;
   min-height: 100px;
   border-radius: 5px;
   display: flex;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
 }
-.dashboard .container .row .col-6 .col-5 .leftcontent {
+.dashboard .container-fluid .row .col-6 .col-5:hover {
+  color: white;
+}
+.dashboard .container-fluid .row .col-6 .col-5::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  background-color: blue;
+  transition: all 0.5s ease;
+  width: 100%;
+  height: 100%;
+}
+.dashboard .container-fluid .row .col-6 .col-5:hover::after {
+  top: 0;
+  left: 0;
+  -webkit-clip-path: ellipse(155px 140px at 10% -6%);
+          clip-path: ellipse(155px 140px at 10% -6%);
+  transition: all 0.5s ease;
+  z-index: -1;
+}
+.dashboard .container-fluid .row .col-6 .col-5 .leftcontent {
   padding: 20px 7px 0 10px;
 }
-.dashboard .container .row .col-6 .col-5 .leftcontent .icon .statistics-icons {
+.dashboard .container-fluid .row .col-6 .col-5 .leftcontent .icon .statistics-icons {
   font-size: 40px;
 }
-.dashboard .container .row .col-6 .col-5 .rightcontent {
-  padding-top: 5px;
+.dashboard .container-fluid .row .col-6 .col-5 .rightcontent {
+  padding-top: 10px;
 }
-.dashboard .container .row .col-6 .col-5 .rightcontent .count {
+.dashboard .container-fluid .row .col-6 .col-5 .rightcontent .count {
   font-size: 30px;
   font-weight: 500;
   padding-bottom: 5px;
+}
+.editmain {
+  transition: all 0.5s;
+}
+
+.dashboard-customers {
+  padding-top: 40px;
+}
+.dashboard-customers .dashboard-header-customers {
+  margin: 0 auto;
+  padding-bottom: 60px;
+}
+.dashboard-customers .container-fluid .row .tablestyle {
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  width: 90%;
+  margin-right: 20%;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+}
+.dashboard-customers .container-fluid .row .tablestyle tr th {
+  padding: 20px 8px;
+}
+.dashboard-customers .container-fluid .row .tablestyle tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.dashboard-customers .container-fluid .row .tablestyle tr:hover {
+  background-color: #ddd;
+}
+.dashboard-customers .container-fluid .row .tablestyle tr td {
+  padding: 8px;
+}
+.dashboard-customers .container-fluid .row .tablestyle tr td input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+}
+.dashboard-customers .container-fluid .row .tablestyle .infotableheader {
+  width: 7%;
+}
+.dashboard-customers .container-fluid .row .button-list {
+  text-align: center;
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  padding-top: 10px;
+}
+.dashboard-customers .container-fluid .row .button-list .leftcontent {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 16%;
+}
+.dashboard-customers .container-fluid .row .button-list .leftcontent select {
+  border: none;
+}
+.dashboard-customers .container-fluid .row .button-list .rightcontent .button-previous {
+  border: none;
+  background-color: white;
+  padding: 8px 16px;
+}
+.dashboard-customers .container-fluid .row .button-list .rightcontent .button-next {
+  border: none;
+  background-color: white;
+  padding: 8px 16px;
+}
+.dashboard-customers .container-fluid .row .button-list .rightcontent .button-item {
+  border: none;
+  background-color: white;
+  padding: 8px 16px;
+  border-radius: 15px;
+}
+
+.buttonbgcolor {
+  background-color: red !important;
+  color: white;
 }/*# sourceMappingURL=style.css.map */

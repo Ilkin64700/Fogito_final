@@ -9,11 +9,11 @@
   justify-content: flex-end;
   .cart-container {
     padding: 30px 24px;
-    max-width: 480px;
+    max-width: 400px;
     min-width: 320px;
     width: 100%;
     background-color: #f9f9f9;
-    transition: all ease-in-out 5s;
+    // transition: all ease-in-out 0.3s;
     animation: drawerAnimation 0.3s ease-out backwards;
     .cart-header {
       display: flex;
@@ -39,19 +39,29 @@
       flex-wrap: wrap;
       align-content: center;
       .lightmood {
-        padding-bottom: 30px;
+        border-radius: 5px;
+        margin-bottom: 30px;
+        display: flex;
+        width: 80%;
+        padding: 10px 0 5px 10px;
         cursor: pointer;
         span {
           height: 30px;
           width: 30px;
           display: inline-block;
-          background-color: red;
+          background-color: white;
           border-radius: 25px;
           vertical-align: middle;
           margin-right: 10px;
         }
+        p {
+        }
       }
       .darkmood {
+        border-radius: 5px;
+        display: flex;
+        width: 80%;
+        padding: 10px 0 5px 10px;
         cursor: pointer;
         span {
           height: 30px;
@@ -62,13 +72,18 @@
           vertical-align: middle;
           margin-right: 10px;
         }
+        p {
+        }
       }
       ul {
         list-style: none;
+        padding-left: 0;
+        width: 80%;
         li {
-            margin-bottom: 20px;
-            width: 100%;
-            cursor: pointer;
+          padding: 10px 0 10px 10px;  
+          border-radius: 5px;
+          margin-bottom: 20px;
+          cursor: pointer;
           .paint-icons {
             font-size: 30px;
             margin-right: 10px;
@@ -91,7 +106,87 @@
   }
 }
 
-.bgcolor{
-    background-color: dodgerblue;
-    color: white;
+.bgcolor {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.light {
+  background-color: white;
+}
+
+.dark {
+  background-color: black;
+  color: white;
+  .sidebar {
+    box-shadow: 3px 3px 10px 6px;
+  }
+  .dropdown {
+    .dropdown-content {
+      background-color: #252525;
+      .dropdown-item {
+        &:hover {
+          color: black;
+        }
+      }
+    }
+  }
+  .customnavbar {
+    .threedropdown {
+      .palette {
+        color: white;
+      }
+    }
+  }
+  .dashboard {
+    .container-fluid {
+      .row {
+        .col-6 {
+          .col-5 {
+            box-shadow: 3px 3px 10px 6px;
+          }
+        }
+      }
+    }
+  }
+  .cart-overlay {
+    .cart-container {
+      transition: none;
+      .cart-header {
+        color: black;
+      }
+      .allmoods {
+        color: black;
+      }
+    }
+  }
+}
+
+.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.blue{
+  color: blue;
+}
+
+.red{
+  color: red;
+}
+
+.cyan{
+  color: cyan;
+}
+
+.green{
+  color: green;
+}
+
+.orange{
+  color: orange;
+}
+
+.deepskyblue{
+  color: deepskyblue;
 }

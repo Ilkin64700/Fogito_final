@@ -12,7 +12,7 @@ const Dropdown = ({
   editpadding,
   nobutton
 }) => {
-  const {language,setLanguage,weblanguages} =useContext(LangContext)
+  const {setLanguage} =useContext(LangContext)
 
   const [showDropdDown, setShowDropDown] = useState(false);
 
@@ -21,7 +21,6 @@ const Dropdown = ({
   useEffect(() => {
     const closeOpenDropdown = (e) => {
       if (!clickOutside.current.contains(e.target)) {
-        console.log("clicksidecurrent", clickOutside.current);
         setShowDropDown(false);
       }
     };
@@ -68,7 +67,7 @@ const Dropdown = ({
                 </p>
               </div>
             ))}
-            <button className={`btn btn-primary ${nobutton}`}>View All</button>
+            <a className={`btn btn-primary ${nobutton}`}>View All</a>
           </div>
         )}
       </div>

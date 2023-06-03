@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
-import Dropdown from "../components/userinterface/Dropdown";
+import Dropdown from "../../components/UI/Dropdown";
 import { BsBell } from "react-icons/bs";
 import { BiError, BiPalette, BiUser, BiWalletAlt } from "react-icons/bi";
 import { FiSettings } from "react-icons/fi";
 import { AiOutlineLogout } from "react-icons/ai";
 import { TbFlag3Filled } from "react-icons/tb";
 import { LuBox, LuShoppingCart, LuArrowUpLeftFromCircle } from "react-icons/lu";
-import RightDrawer from "./RightDrawer";
-import { LangContext } from "../context/LanguageProvider";
+import RightDrawer from "../layout/RightDrawer";
+import { ThemeContext } from "../../context/ThemeProvider";
 
 const Navbar = ({ opensidebar, setOpenSideBar }) => {
   const usermenus = [
@@ -30,6 +30,11 @@ const Navbar = ({ opensidebar, setOpenSideBar }) => {
   ];
   const languages = [
     {
+      code: "eng",
+      icon: <TbFlag3Filled className="language-icons" />,
+      language: "English",
+    },
+    {
       code: "aze",
       icon: <TbFlag3Filled className="language-icons" />,
       language: "Azerbaijani",
@@ -38,11 +43,6 @@ const Navbar = ({ opensidebar, setOpenSideBar }) => {
       code: "tur",
       icon: <TbFlag3Filled className="language-icons" />,
       language: "Turkish",
-    },
-    {
-      code: "eng",
-      icon: <TbFlag3Filled className="language-icons" />,
-      language: "English",
     },
   ];
 
@@ -70,12 +70,16 @@ const Navbar = ({ opensidebar, setOpenSideBar }) => {
     },
   ];
 
-  const { language, setLanguage, weblanguages } = useContext(LangContext);
+  const {paintcolor}=useContext(ThemeContext)
+
+
+
+
   const [openCart, setOpenCart] = useState(false);
 
   return (
     <div
-      style={{ marginLeft: opensidebar ? "300px" : "" }}
+      style={{ marginLeft: opensidebar ? "350px" : "" }}
       className="customnavbar"
     >
       <div className="onedropdown">
@@ -110,7 +114,7 @@ const Navbar = ({ opensidebar, setOpenSideBar }) => {
           }}
           className="btn palette"
         >
-          <BiPalette className="draweroutsidebutton" />
+          <BiPalette className={`draweroutsidebutton ${paintcolor}`} />
         </button>
       </div>
       {openCart ? <RightDrawer closeCart={setOpenCart} /> : null}
