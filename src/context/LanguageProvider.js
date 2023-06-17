@@ -26,6 +26,12 @@ const LanguageProvider = ({ children }) => {
       totalorderstwo: "TOTAL ORDERS",
       selecttextfirstpart:"Showing 1 to ",
       selecttextsecondpart:" of entries",
+      totalproducts:"Total Products",
+      title:"TITLE",
+      price:"PRICE",
+      category:"CATEGORY",
+      image:"IMAGE",
+      rating:"RATING",
     },
     aze: {
       totalsales: "Ümümi satışlar",
@@ -49,6 +55,13 @@ const LanguageProvider = ({ children }) => {
       totalorderstwo: "ÜMUMİ SİFARİŞLƏR",
       selecttextfirstpart:"1-dən  ",
       selecttextsecondpart:" qədər məlumatları göstər",
+      totalproducts:"Bütün Məhsullar",
+      title:"BAŞLIQ",
+      price:"QİYMƏT",
+      category:"KATEQORİYA",
+      image:"ŞƏKİL",
+      rating:"REYTİNQ"
+
 
       
     },
@@ -74,6 +87,13 @@ const LanguageProvider = ({ children }) => {
       totalorderstwo: "TOPLAM SİPARİŞLER",
       selecttextfirstpart:"1-den  ",
       selecttextsecondpart:" kadar bilgileri göster",
+      totalproducts:"Tüm Ürünler",
+      title:"BAŞLIK",
+      price:"FİYAT",
+      category:"KATEGORİ",
+      image:"RESIM",
+      rating:"DERECE"
+
 
     },
   };

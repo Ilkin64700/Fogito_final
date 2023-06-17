@@ -1,0 +1,63 @@
+.dashboard-statistics {
+  .dashboard-header-statistics {
+    padding-top: 50px;
+  }
+  .container-fluid {
+    .row {
+      .wholechart {
+        .checkboxes {
+          padding-bottom: 50px;
+          label {
+            padding-right: 15px;
+            input {
+              margin-right: 5px;
+            }
+          }
+        }
+        .chart {
+          .bar-grouup {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            .createdbar {
+              background-color: orange;
+              height: 300px;
+              width: 50px;
+              border-radius: 10px;
+              margin-right: 10px;
+              transition: height 0.5s ease;
+              animation: baranimate 0.5s backwards;
+            }
+            .completedbar {
+              background-color: deepskyblue;
+              height: 300px;
+              width: 50px;
+              border-radius: 10px;
+              margin-right: 10px;
+              transition: height 0.5s ease;
+              animation: baranimate 0.5s backwards;
+            }
+            .overduebar {
+              background-color: pink;
+              height: 300px;
+              width: 50px;
+              border-radius: 10px;
+              margin-right: 10px;
+              transition: height 0.5s ease;
+              animation: baranimate 0.5s backwards;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes baranimate {
+  from {
+    transform: translateY(50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

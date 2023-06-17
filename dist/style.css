@@ -1,3 +1,8 @@
+body a {
+  text-decoration: none;
+  color: black;
+}
+
 .sidebar {
   position: fixed;
   top: 0;
@@ -6,7 +11,8 @@
   width: 300px;
   box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
   padding-top: 50px;
-  transition: all 0.5s;
+  transition: width 0.5s;
+  overflow: hidden;
 }
 .sidebar .upper-part {
   display: flex;
@@ -14,12 +20,19 @@
   align-items: baseline;
   padding-bottom: 30px;
 }
-.sidebar .upper-part .three-lines {
-  padding-left: 15px;
+.sidebar .upper-part .logo {
+  padding-left: 14px;
+  padding-bottom: 12px;
+}
+.sidebar .upper-part .logo i {
+  font-size: 25px;
+  color: deepskyblue;
+  cursor: pointer;
 }
 .sidebar .upper-part .three-lines i {
   font-size: 25px;
   color: deepskyblue;
+  padding-left: 10px;
   cursor: pointer;
 }
 .sidebar .upper-part .three-lines .bi-list-nested::before {
@@ -31,6 +44,7 @@
 }
 .sidebar .sidebar-navigation ul {
   list-style: none;
+  padding-left: 15px;
 }
 .sidebar .sidebar-navigation ul li {
   margin-bottom: 20px;
@@ -38,20 +52,22 @@
   font-size: 20px;
   display: flex;
   justify-content: flex-start;
-  transition: all 0.5s;
+  transition: width 0.5s;
+  width: 100%;
   cursor: pointer;
 }
 .sidebar .sidebar-navigation ul li .icon-sidebar {
   vertical-align: sub;
   margin-right: 5px;
 }
-.sidebar .sidebar-navigation ul li a {
-  text-decoration: none;
-  color: black;
+.sidebar .sidebar-navigation ul li a .navlink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .setnavcolor {
-  color: deepskyblue;
+  color: deepskyblue !important;
 }
 
 .customnavbar {
@@ -242,8 +258,15 @@
   background-color: black;
   color: white;
 }
+.dark a {
+  color: white;
+}
 .dark .sidebar {
   box-shadow: 3px 3px 10px 6px;
+}
+.dark .dropdown .dropdown-button span {
+  background-color: white;
+  color: black;
 }
 .dark .dropdown .dropdown-content {
   background-color: #252525;
@@ -259,15 +282,38 @@
 }
 .dark .cart-overlay .cart-container {
   transition: none;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 3px 3px 10px 6px;
 }
 .dark .cart-overlay .cart-container .cart-header {
-  color: black;
+  color: white;
+}
+.dark .cart-overlay .cart-container a .closebutton {
+  color: white;
 }
 .dark .cart-overlay .cart-container .allmoods {
-  color: black;
+  color: white;
+}
+.dark .dashboard-customers .container-fluid .row .tablestyle {
+  box-shadow: 3px 3px 10px 6px;
+}
+.dark .dashboard-customers .container-fluid .row .button-list .leftcontent .select {
+  background-color: black;
+}
+.dark .dashboard-customers .container-fluid .row .button-list .rightcontent .button-item {
+  background-color: black;
+  color: white;
+}
+.dark .dashboard-customers .container-fluid .row .button-list .rightcontent .button-previous {
+  background-color: black;
+  color: white;
+}
+.dark .dashboard-customers .container-fluid .row .button-list .rightcontent .button-next {
+  background-color: black;
+  color: white;
 }
 
-.active {
+.activetheme {
   background-color: dodgerblue;
   color: white;
 }
@@ -277,7 +323,7 @@
 }
 
 .red {
-  color: red;
+  color: red !important;
 }
 
 .cyan {
@@ -294,6 +340,26 @@
 
 .deepskyblue {
   color: deepskyblue;
+}
+
+.cart-overlay .cart-container .cart-header {
+  padding-bottom: 30px;
+}
+.cart-overlay .cart-container .cardlist {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+.cart-overlay .cart-container .cardlist .card-body .checkedproduct {
+  padding-top: 15px;
+}
+.cart-overlay .cart-container .cardlist .card-body .checkedproduct label {
+  padding-right: 20px;
+}
+.cart-overlay .cart-container .cardlist .card-body .checkedproduct input {
+  width: 20px;
+  height: 20px;
 }
 
 .dropdown .dropdown-button {
@@ -353,6 +419,106 @@
   display: inline-block;
 }
 
+.addmodal-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding-top: 6rem;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.addmodal-overlay .addmodal {
+  border-radius: 5px;
+  width: 50%;
+  margin: 0 auto;
+  transition: all 0.3s;
+  animation: modalanimation 0.7s ease-out forwards;
+  background-color: white;
+  padding: 5px 10px;
+}
+.addmodal-overlay .addmodal .modalheader {
+  padding: 15px 0 30px 15px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  align-items: center;
+}
+.addmodal-overlay .addmodal .modalheader .modalicon .closeicon {
+  margin-right: 15px;
+  font-size: 25px;
+  cursor: pointer;
+}
+.addmodal-overlay .addmodal .modalheader .modaltext {
+  font-size: 25px;
+}
+.addmodal-overlay .addmodal .formcontent {
+  padding-left: 15px;
+}
+.addmodal-overlay .addmodal .formcontent .showblock {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+}
+.addmodal-overlay .addmodal .formcontent .showblock .modal-editicon {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.addmodal-overlay .addmodal .formcontent .showblock .modal-editicon .icon-pencil {
+  margin-left: 10px;
+}
+.addmodal-overlay .addmodal .formcontent label {
+  display: block;
+  padding: 15px 0 5px 0;
+  width: 10%;
+}
+.addmodal-overlay .addmodal .formcontent input {
+  border: 1px solid rgba(199, 195, 195, 0.8);
+  border-radius: 5px;
+  width: 70%;
+  padding: 5px 10px;
+}
+.addmodal-overlay .addmodal .formcontent input:focus {
+  outline: 0;
+}
+.addmodal-overlay .addmodal .formcontent .closebutton {
+  text-align: right;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+@keyframes modalanimation {
+  0% {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+.addmodal-overlay .adddeletemodal {
+  padding: 5px 30px;
+}
+.addmodal-overlay .adddeletemodal .formcontent .modalbody {
+  text-align: center;
+  border: 1px solid indianred;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: red;
+  color: white;
+  margin-bottom: 35px;
+}
+.addmodal-overlay .adddeletemodal .formcontent .deletecancelbuttons {
+  text-align: right;
+  padding: 20px;
+}
+.addmodal-overlay .adddeletemodal .formcontent .deletecancelbuttons .savebuttons {
+  border: none;
+  background-color: white;
+  margin-right: 15px;
+}
+
 .dashboard {
   padding-top: 50px;
 }
@@ -398,6 +564,8 @@
   transition: all 0.5s ease;
   width: 100%;
   height: 100%;
+  -webkit-clip-path: ellipse(155px 140px at 10% -6%);
+          clip-path: ellipse(155px 140px at 10% -6%);
 }
 .dashboard .container-fluid .row .col-6 .col-5:hover::after {
   top: 0;
@@ -431,13 +599,42 @@
 .dashboard-customers .dashboard-header-customers {
   margin: 0 auto;
   padding-bottom: 60px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.dashboard-customers .dashboard-header-customers .search {
+  margin-left: 30px;
+  width: 25%;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dashboard-customers .dashboard-header-customers .search input {
+  border: none;
+}
+.dashboard-customers .dashboard-header-customers .search input:focus {
+  outline: none;
+}
+.dashboard-customers .dashboard-header-customers .search .search-icon {
+  color: dodgerblue;
+  font-size: 25px;
+}
+.dashboard-customers .dashboard-header-customers .checkcolumns .dropdownwidth {
+  width: 200px;
+}
+.dashboard-customers .dashboard-header-customers .checkcolumns .dropdownwidth .dropdown-item input {
+  margin-right: 5px;
 }
 .dashboard-customers .container-fluid .row .tablestyle {
-  margin: 0 auto;
   margin-bottom: 1rem;
   width: 90%;
-  margin-right: 20%;
   box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+  border-radius: 5px;
 }
 .dashboard-customers .container-fluid .row .tablestyle tr th {
   padding: 20px 8px;
@@ -451,12 +648,13 @@
 .dashboard-customers .container-fluid .row .tablestyle tr td {
   padding: 8px;
 }
-.dashboard-customers .container-fluid .row .tablestyle tr td input[type=checkbox] {
-  width: 20px;
-  height: 20px;
-}
 .dashboard-customers .container-fluid .row .tablestyle .infotableheader {
   width: 7%;
+  cursor: pointer;
+  text-align: center;
+}
+.dashboard-customers .container-fluid .row .tablestyle .deletetableheader {
+  text-align: center;
 }
 .dashboard-customers .container-fluid .row .button-list {
   text-align: center;
@@ -493,7 +691,30 @@
   border-radius: 15px;
 }
 
-.buttonbgcolor {
-  background-color: red !important;
-  color: white;
+.dashboard-customers .checkcolumns {
+  width: 55%;
+  text-align: right;
+}
+.dashboard-customers .checkcolumns .basket .basket-count {
+  position: absolute;
+  background-color: dodgerblue;
+  border-radius: 10px;
+  width: 20px;
+  text-align: center;
+  top: 30%;
+  right: 1%;
+}
+.dashboard-customers .checkcolumns .basket .basketbutton {
+  border: none;
+  background-color: white;
+}
+.dashboard-customers .checkcolumns .basket .basketbutton .basket-icon {
+  font-size: 30px;
+}
+.dashboard-customers .container-fluid .row .tablestyle {
+  width: 100%;
+}
+.dashboard-customers .container-fluid .row .tablestyle .deletetableheader input {
+  width: 20px;
+  height: 20px;
 }/*# sourceMappingURL=style.css.map */

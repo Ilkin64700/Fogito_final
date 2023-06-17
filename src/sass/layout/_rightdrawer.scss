@@ -7,6 +7,7 @@
   background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: flex-end;
+  z-index: 1;
   .cart-container {
     padding: 30px 24px;
     max-width: 400px;
@@ -80,7 +81,7 @@
         padding-left: 0;
         width: 80%;
         li {
-          padding: 10px 0 10px 10px;  
+          padding: 10px 0 10px 10px;
           border-radius: 5px;
           margin-bottom: 20px;
           cursor: pointer;
@@ -118,10 +119,19 @@
 .dark {
   background-color: black;
   color: white;
+  a {
+    color: white;
+  }
   .sidebar {
     box-shadow: 3px 3px 10px 6px;
   }
   .dropdown {
+    .dropdown-button {
+      span {
+        background-color: white;
+        color: black;
+      }
+    }
     .dropdown-content {
       background-color: #252525;
       .dropdown-item {
@@ -152,41 +162,80 @@
   .cart-overlay {
     .cart-container {
       transition: none;
+      background-color: rgba(0, 0, 0, 0.8);
+      box-shadow: 3px 3px 10px 6px;
       .cart-header {
-        color: black;
+        color: white;
+      }
+      a {
+        .closebutton {
+          color: white;
+        }
       }
       .allmoods {
-        color: black;
+        color: white;
       }
     }
   }
+  .dashboard-customers{
+    .container-fluid{
+      .row{
+        .tablestyle {
+          box-shadow: 3px 3px 10px 6px;
+        }
+        .button-list{
+          .leftcontent{
+           .select{
+            background-color: black;
+           }
+          }
+          .rightcontent{
+            .button-item{
+              background-color: black;
+              color: white;
+            }
+            .button-previous{
+              background-color: black;
+              color: white;
+            }
+            .button-next{
+              background-color: black;
+              color: white;
+            }
+          }
+        }
+      }
+    }
+    
+  }
+  
 }
 
-.active {
+.activetheme {
   background-color: dodgerblue;
   color: white;
 }
 
-.blue{
+.blue {
   color: blue;
 }
 
-.red{
-  color: red;
+.red {
+  color: red !important;
 }
 
-.cyan{
+.cyan {
   color: cyan;
 }
 
-.green{
+.green {
   color: green;
 }
 
-.orange{
+.orange {
   color: orange;
 }
 
-.deepskyblue{
+.deepskyblue {
   color: deepskyblue;
 }

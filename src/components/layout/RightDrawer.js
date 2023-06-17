@@ -50,11 +50,11 @@ const RightDrawer = ({ closeCart, hideLightbox }) => {
         <div className="allmoods">
           <div className="choosingmood">Choose mood</div>
           <div className="lightdarkmoods">
-            <div onClick={()=>{changeLightTheme()}} className={`lightmood ${theme==="light" ? "active" :""}`}>
+            <div onClick={()=>{changeLightTheme()}} className={`lightmood ${theme==="light" ? "activetheme" :""}`}>
               <span></span>
              <p>Light</p>
             </div>
-            <div onClick={()=>{changeDarkTheme()}}  className={`darkmood ${theme==="dark" ? "active" :""}`}>
+            <div onClick={()=>{changeDarkTheme()}}  className={`darkmood ${theme==="dark" ? "activetheme" :""}`}>
               <span></span>
            <p>Dark</p>
             </div>

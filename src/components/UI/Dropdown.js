@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import userphoto from "../../assets/images/user photo.jpg";
 import { LangContext } from "../../context/LanguageProvider";
+import { ThemeContext } from "../../context/ThemeProvider";
 
 const Dropdown = ({
   image,
@@ -13,6 +14,9 @@ const Dropdown = ({
   nobutton
 }) => {
   const {setLanguage} =useContext(LangContext)
+  const { theme, paintcolor } = useContext(ThemeContext);
+
+
 
   const [showDropdDown, setShowDropDown] = useState(false);
 
@@ -38,7 +42,7 @@ const Dropdown = ({
           }}
           className="dropdown-button"
         >
-          <span className={`${span}`}>12</span>
+          <span className={`${paintcolor} ${span}`}>12</span>
           {circlearrowicon}
           <img
             className={image}

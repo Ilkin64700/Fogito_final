@@ -1,3 +1,10 @@
+body{
+  a{
+    text-decoration: none;
+    color: black;
+  }
+}
+
 .sidebar {
   position: fixed;
   top: 0;
@@ -6,19 +13,27 @@
   width: 300px;
   box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
   padding-top: 50px;
-  transition: all 0.5s;
+  transition: width 0.5s;
+  overflow: hidden;
   .upper-part {
     display: flex;
     justify-content: flex-start;
     align-items: baseline;
     padding-bottom: 30px;
     .logo {
-    }
-    .three-lines {
-      padding-left: 15px;
+      padding-left: 14px;
+      padding-bottom: 12px;
       i {
         font-size: 25px;
         color: deepskyblue;
+        cursor: pointer;
+      }
+    }
+    .three-lines {
+      i {
+        font-size: 25px;
+        color: deepskyblue;
+        padding-left: 10px;
         cursor: pointer;
       }
       .bi-list-nested {
@@ -35,21 +50,26 @@
   .sidebar-navigation {
     ul {
       list-style: none;
+      padding-left: 15px;
       li {
         margin-bottom: 20px;
         font-weight: 500;
         font-size: 20px;
         display: flex;
         justify-content: flex-start;
-        transition: all 0.5s;
+        transition: width 0.5s;
+        width: 100%;
         cursor: pointer;
         .icon-sidebar {
           vertical-align: sub;
           margin-right: 5px;
         }
         a {
-          text-decoration: none;
-          color: black;
+          .navlink {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
         }
       }
     }
@@ -57,5 +77,6 @@
 }
 
 .setnavcolor {
-  color: deepskyblue;
+  color: deepskyblue !important;
 }
+    

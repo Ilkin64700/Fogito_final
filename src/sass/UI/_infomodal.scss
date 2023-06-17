@@ -1,0 +1,80 @@
+.addmodal-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding-top: 6rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  .addmodal {
+    border-radius: 5px;
+    width: 50%;
+    margin: 0 auto;
+    transition: all 0.3s;
+    animation: modalanimation 0.7s ease-out forwards;
+    background-color: white;
+    padding: 5px 10px;
+    .modalheader {
+      padding: 15px 0 30px 15px;
+      display: flex;
+      justify-content: space-between;
+      border-radius: 5px;
+      align-items: center;
+      .modalicon {
+        .closeicon {
+          margin-right: 15px;
+          font-size: 25px;
+          cursor: pointer;
+        }
+      }
+      .modaltext {
+        font-size: 25px;
+      }
+    }
+    .formcontent {
+      padding-left: 15px;
+      .showblock {
+        display: flex;
+        justify-content: space-around;
+        align-items: baseline;
+        .modal-editicon{
+          text-decoration: underline;
+          cursor: pointer;
+          .icon-pencil{
+            margin-left: 10px;
+          }
+        }
+      }
+      label {
+        display: block;
+        padding: 15px 0 5px 0;
+        width: 10%;
+      }
+      input {
+        border: 1px solid rgba(199, 195, 195, 0.8);
+        border-radius: 5px;
+        width:70%;
+        padding: 5px 10px;
+        &:focus {
+          outline: 0;
+        }
+      }
+      .closebutton{
+        text-align: right;
+        padding: 20px;
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+@keyframes modalanimation {
+  0% {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}

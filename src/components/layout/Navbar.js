@@ -9,7 +9,7 @@ import { LuBox, LuShoppingCart, LuArrowUpLeftFromCircle } from "react-icons/lu";
 import RightDrawer from "../layout/RightDrawer";
 import { ThemeContext } from "../../context/ThemeProvider";
 
-const Navbar = ({ opensidebar, setOpenSideBar }) => {
+const Navbar = ({ openleftdrawer, setOpenLeftDrawer }) => {
   const usermenus = [
     {
       icon: <BiUser className="usermenu-icons" />,
@@ -79,7 +79,7 @@ const Navbar = ({ opensidebar, setOpenSideBar }) => {
 
   return (
     <div
-      style={{ marginLeft: opensidebar ? "350px" : "" }}
+      style={{ marginLeft: openleftdrawer ? "350px" : "" }}
       className="customnavbar"
     >
       <div className="onedropdown">

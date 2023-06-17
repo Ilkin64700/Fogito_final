@@ -1,0 +1,25 @@
+.addmodal-overlay {
+  .adddeletemodal {
+    padding: 5px 30px;
+    .formcontent {
+      .modalbody {
+        text-align: center;
+        border: 1px solid indianred;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: red;
+        color: white;
+        margin-bottom: 35px;
+      }
+      .deletecancelbuttons {
+        text-align: right;
+        padding: 20px;
+        .savebuttons {
+          border: none;
+          background-color: white;
+          margin-right: 15px;
+        }
+      }
+    }
+  }
+}

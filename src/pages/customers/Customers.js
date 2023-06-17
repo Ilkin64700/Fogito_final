@@ -1,12 +1,30 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { LangContext } from "../../context/LanguageProvider";
 import customerslist from "../../customers-list.json";
 import { ThemeContext } from "../../context/ThemeProvider";
-
+import InfoModal from "../../components/UI/InfoModal";
+import { BiSearchAlt, BiChevronDown, BiChevronUp } from "react-icons/bi";
+import DeleteModal from "../../components/UI/DeleteModal";
+import { BsReverseListColumnsReverse } from "react-icons/bs";
+import {FiFilter} from "react-icons/fi"
 const Customers = () => {
   const { language, weblanguages } = useContext(LangContext);
-  const {theme,setTheme,paintcolor,setPaintColor,colors}=useContext(ThemeContext)
+  const { theme, setTheme, paintcolor, setPaintColor, colors } =useContext(ThemeContext);
+  const [selecteditem, setSelectedItem] = useState();
+  const [opendeletemodal, setOpenDeleteModal] = useState(false);
+  const [showfilters,SetShowFilters]=useState(false)
+  const [search, setSearch] = useState("");
 
+  const tableheaders = [
+    "ID",
+    "NAME",
+    "EMAIL",
+    "LOCATION",
+    "PHONE",
+    "TOTAL EXPENSES",
+    "TOTAL ORDERS",
+  ];
+  const [showcolumn, setShowColumn] = useState(tableheaders);
 
   const optionValues = [10, 20, 50, 100];
   const [currentPage, setcurrentPage] = useState(1);
@@ -15,6 +33,7 @@ const Customers = () => {
   const userFirstIndex = userLastIndex - userPerPage;
   const [currentUserData, setCurrentUserData] = useState(customerslist);
   const [buttonColorIndex, setButtonColorIndex] = useState(0);
+  const [showmodal, setShowModal] = useState(false);
   const totalpages = 10;
   const visiblepages = 3;
 
@@ -26,6 +45,31 @@ const Customers = () => {
     const dropdownColorIndex = Math.ceil(currentPage - 1);
     setButtonColorIndex(dropdownColorIndex);
   }, [currentPage]);
+
+  const clickOutside = useRef(null);
+
+  const [showDropdDown, setShowDropDown] = useState(false);
+
+  useEffect(() => {
+    const closeOpenDropdown = (e) => {
+      if (!clickOutside.current.contains(e.target)) {
+        setShowDropDown(false);
+      }
+    };
+    document.addEventListener("mousedown", closeOpenDropdown);
+
+    return () => document.removeEventListener("mousedown", closeOpenDropdown);
+  }, []);
+
+  const showorhide = (tableheader) => {
+    if (showcolumn.includes(tableheader)) {
+      setShowColumn(
+        showcolumn.filter((tableheaderitem) => tableheaderitem !== tableheader)
+      );
+    } else {
+      setShowColumn([...showcolumn, tableheader]);
+    }
+  };
 
   const showallpagenumbers = () => {
     const pageCountList = [];
@@ -40,9 +84,23 @@ const Customers = () => {
       pageCountList.push(
         <button
           key={i}
-          className={`button-item ${
-            buttonColorIndex === i - 1 ? "buttonbgcolor" : ""
-          }`}
+          style={{
+            backgroundColor:
+              buttonColorIndex === i - 1
+                ? paintcolor
+                : ""
+                ? theme === "light"
+                  ? "black"
+                  : "white"
+                : "",
+            color:
+              buttonColorIndex === i - 1
+                ? theme === "light"
+                  ? "black"
+                  : "white"
+                : "",
+          }}
+          className="button-item"
           onClick={(e) => {
             setcurrentPage(i);
             setButtonColorIndex(i - 1);
@@ -80,48 +138,204 @@ const Customers = () => {
     setcurrentPage(1);
   };
 
-  console.log("123", currentPage * userPerPage);
   return (
     <section className="dashboard-customers">
       <div className="dashboard-header-customers">
-        <h3>{weblanguages[language].topcustomers}</h3>
+        <div className="customerheaderleftcontent">
+          <div className="customerflexheader">
+            <h3>{weblanguages[language].topcustomers}</h3>
+          </div>
+          <div className="search">
+            <input
+              type="search"
+              placeholder="Search by  name"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <BiSearchAlt className="search-icon" />
+          </div>
+        </div>
+        <div className="checkcolumnscustomers me-5">
+          <div ref={clickOutside} className="dropdown">
+            <div
+              onClick={() => {
+                setShowDropDown(!showDropdDown);
+              }}
+              className="dropdown-button btn"
+            >
+              <BsReverseListColumnsReverse className="columnlist" />
+              Columns
+              {showDropdDown ? (
+                <BiChevronDown className="downarrow" />
+              ) : (
+                <BiChevronUp className="uparrow" />
+              )}
+            </div>
+            {showDropdDown && (
+              <div className="dropdown-content dropdownwidth">
+                <div className="dropdown-item">
+                  <input
+                    type="checkbox"
+                    checked={showcolumn.includes("ID")}
+                    onChange={() => showorhide("ID")}
+                  />
+                  ID
+                </div>
+                <div className="dropdown-item">
+                  <input
+                    type="checkbox"
+                    checked={showcolumn.includes("NAME")}
+                    onChange={() => showorhide("NAME")}
+                  />
+                  Name
+                </div>
+                <div className="dropdown-item">
+                  <input
+                    type="checkbox"
+                    checked={showcolumn.includes("EMAIL")}
+                    onChange={() => showorhide("EMAIL")}
+                  />
+                  Email
+                </div>
+                <div className="dropdown-item">
+                  <input
+                    type="checkbox"
+                    checked={showcolumn.includes("LOCATION")}
+                    onChange={() => showorhide("LOCATION")}
+                  />
+                  Location
+                </div>
+                <div className="dropdown-item">
+                  <input
+                    checked={showcolumn.includes("PHONE")}
+                    onChange={() => showorhide("PHONE")}
+                    type="checkbox"
+                  />
+                  Phone
+                </div>
+                <div className="dropdown-item">
+                  <input
+                    checked={showcolumn.includes("TOTAL EXPENSES")}
+                    onChange={() => showorhide("TOTAL EXPENSES")}
+                    type="checkbox"
+                  />
+                  Total Expenses
+                </div>
+                <div className="dropdown-item">
+                  <input
+                    checked={showcolumn.includes("TOTAL ORDERS")}
+                    onChange={() => showorhide("TOTAL ORDERS")}
+                    type="checkbox"
+                  />
+                  Total Orders
+                </div>
+                <div
+                  onClick={() => {
+                    setShowDropDown(!showDropdDown);
+                  }}
+                  className="dropdownsave"
+                >
+                  <a>Save</a>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="checkcolumnscustomers me-5">
+          <div ref={clickOutside} className="dropdown">
+            <div
+              onClick={() => {
+                SetShowFilters(!showfilters);
+              }}
+              className="dropdown-button btn"
+            >
+              <FiFilter className="columnlist" />
+              Filters
+              {showfilters ? (
+                <BiChevronDown className="downarrow" />
+              ) : (
+                <BiChevronUp className="uparrow" />
+              )}
+            </div>
+          </div>
+        </div>
       </div>
       <div className="container-fluid">
         <div className="row">
           <table className="tablestyle">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>{weblanguages[language].name}</th>
-                <th>{weblanguages[language].email}</th>
-                <th>{weblanguages[language].location}</th>
-                <th>{weblanguages[language].phone}</th>
-                <th>{weblanguages[language].totalexpenses}</th>
-                <th>{weblanguages[language].totalorderstwo}</th>
+                {showcolumn.includes("ID") && <th>ID</th>}
+                {showcolumn.includes("NAME") && (
+                  <th>{weblanguages[language].name}</th>
+                )}
+                {showcolumn.includes("EMAIL") && (
+                  <th>{weblanguages[language].email}</th>
+                )}
+                {showcolumn.includes("LOCATION") && (
+                  <th>{weblanguages[language].location}</th>
+                )}
+                {showcolumn.includes("PHONE") && (
+                  <th>{weblanguages[language].phone}</th>
+                )}
+                {showcolumn.includes("TOTAL EXPENSES") && (
+                  <th>{weblanguages[language].totalexpenses}</th>
+                )}
+                {showcolumn.includes("TOTAL ORDERS") && (
+                  <th>{weblanguages[language].totalorderstwo}</th>
+                )}
                 <th className="infotableheader">Info</th>
                 <th className="deletetableheader">Delete</th>
               </tr>
             </thead>
-            {currentUserData?.map((item, index) => (
-              <tbody>
-                <tr>
-                  <td>{item.id}</td>
-                  <td>{item.name}</td>
-                  <td>{item.email}</td>
-                  <td>{item.location}</td>
-                  <td>{item.phone}</td>
-                  <td>{item.total_spend}</td>
-                  <td>{item.total_orders}</td>
-                  <td className="infotableheader"><i class="bi bi-info-circle"></i></td>
-                  <td className="deletetableheader"><input type="checkbox" /></td>
-                </tr>
-              </tbody>
-            ))}
+            {currentUserData
+              ?.filter((productitem) =>
+                productitem.name.toLowerCase().includes(search.toLowerCase()) 
+              )
+              .map((item, index) => (
+                <tbody>
+                  <tr>
+                    {showcolumn.includes("ID") && <td>{item.id}</td>}
+                    {showcolumn.includes("NAME") && <td>{item.name}</td>}
+                    {showcolumn.includes("EMAIL") && <td>{item.email}</td>}
+                    {showcolumn.includes("LOCATION") && (
+                      <td>{item.location}</td>
+                    )}
+                    {showcolumn.includes("PHONE") && <td>{item.phone}</td>}
+                    {showcolumn.includes("TOTAL EXPENSES") && (
+                      <td>{item.total_spend}</td>
+                    )}
+                    {showcolumn.includes("TOTAL ORDERS") && (
+                      <td>{item.total_orders}</td>
+                    )}
+                    <td
+                      onClick={() => {
+                        setShowModal(!showmodal);
+                        setSelectedItem(item);
+                      }}
+                      className="infotableheader"
+                    >
+                      <i className="bi bi-info-circle"></i>
+                    </td>
+                    <td className="deletetableheader">
+                      <button
+                        onClick={() => {
+                          setOpenDeleteModal(!opendeletemodal);
+                          setSelectedItem(item);
+                        }}
+                        className="btn btn-danger"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              ))}
           </table>
           <div className="button-list">
             <div className="leftcontent">
               <select
-                className="select"
+                className={` ${paintcolor} select`}
                 value={userPerPage}
                 onChange={(e) => {
                   selectValueChange(e);
@@ -139,6 +353,7 @@ const Customers = () => {
                   prevButton();
                 }}
                 className="button-previous"
+                style={{ display: currentPage === 1 ? "none" : "inline-block" }}
               >
                 {currentPage !== 1 ? "Previous" : null}
               </button>
@@ -148,6 +363,10 @@ const Customers = () => {
                   nextButton();
                 }}
                 className="button-next"
+                style={{
+                  display:
+                    currentPage * userPerPage >= 100 ? "none" : "inline-block",
+                }}
               >
                 {currentPage * userPerPage < 100 ? "Next" : null}
               </button>
@@ -155,6 +374,26 @@ const Customers = () => {
           </div>
         </div>
       </div>
+      {showmodal && (
+        <InfoModal
+          selecteditem={selecteditem}
+          setSelectedItem={setSelectedItem}
+          showmodal={showmodal}
+          setShowModal={setShowModal}
+        />
+      )}
+      {opendeletemodal && (
+        <DeleteModal
+          selecteditem={selecteditem}
+          setSelectedItem={setSelectedItem}
+          showmodal={showmodal}
+          setShowModal={setShowModal}
+          currentUserData={currentUserData}
+          setCurrentUserData={setCurrentUserData}
+          opendeletemodal={opendeletemodal}
+          setOpenDeleteModal={setOpenDeleteModal}
+        />
+      )}
     </section>
   );
 };

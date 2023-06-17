@@ -1,0 +1,78 @@
+.addmodal-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding-top: 6rem;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.addmodal-overlay .addmodal {
+  border-radius: 5px;
+  width: 50%;
+  margin: 0 auto;
+  transition: all 0.3s;
+  animation: modalanimation 0.7s ease-out forwards;
+  background-color: white;
+  padding: 5px 10px;
+}
+.addmodal-overlay .addmodal .modalheader {
+  padding: 15px 0 30px 15px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  align-items: center;
+}
+.addmodal-overlay .addmodal .modalheader .modalicon .closeicon {
+  margin-right: 15px;
+  font-size: 25px;
+  cursor: pointer;
+}
+.addmodal-overlay .addmodal .modalheader .modaltext {
+  font-size: 25px;
+}
+.addmodal-overlay .addmodal .formcontent {
+  padding-left: 15px;
+}
+.addmodal-overlay .addmodal .formcontent .showblock {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+}
+.addmodal-overlay .addmodal .formcontent .showblock .modal-editicon {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.addmodal-overlay .addmodal .formcontent .showblock .modal-editicon .icon-pencil {
+  margin-left: 10px;
+}
+.addmodal-overlay .addmodal .formcontent label {
+  display: block;
+  padding: 15px 0 5px 0;
+  width: 10%;
+}
+.addmodal-overlay .addmodal .formcontent input {
+  border: 1px solid rgba(199, 195, 195, 0.8);
+  border-radius: 5px;
+  width: 70%;
+  padding: 5px 10px;
+}
+.addmodal-overlay .addmodal .formcontent input:focus {
+  outline: 0;
+}
+.addmodal-overlay .addmodal .formcontent .closebutton {
+  text-align: right;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+@keyframes modalanimation {
+  0% {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}/*# sourceMappingURL=infomodal.css.map */

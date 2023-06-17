@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import { RiArrowLeftSLine, RiPencilFill } from "react-icons/ri";
 
 const Info = ({ showmodal, setShowModal, selecteditem, setSelectedItem }) => {
@@ -67,11 +67,11 @@ const Info = ({ showmodal, setShowModal, selecteditem, setSelectedItem }) => {
             </div>
           </div>
           <div className="showblock">
-            <label>Name:</label>
+            <label>Title:</label>
             <input
               disabled={enabled}
-              name="name"
-              value={selecteditem.name}
+              name="title"
+              value={selecteditem.title}
               onChange={editInput}
               type="text"
             />
@@ -84,11 +84,11 @@ const Info = ({ showmodal, setShowModal, selecteditem, setSelectedItem }) => {
             </div>
           </div>
           <div className="showblock">
-            <label>Email:</label>
+            <label>Price:</label>
             <input
               disabled={enabled}
-              name="email"
-              value={selecteditem.email}
+              name="price"
+              value={selecteditem.price}
               onChange={editInput}
               type="text"
             />
@@ -101,11 +101,11 @@ const Info = ({ showmodal, setShowModal, selecteditem, setSelectedItem }) => {
             </div>
           </div>
           <div className="product-rate showblock">
-            <label>Locations:</label>
+            <label>Category:</label>
             <input
               disabled={enabled}
-              name="location"
-              value={selecteditem.location}
+              name="category"
+              value={selecteditem.category}
               onChange={editInput}
               type="text"
             />
@@ -118,11 +118,11 @@ const Info = ({ showmodal, setShowModal, selecteditem, setSelectedItem }) => {
             </div>
           </div>
           <div className="product-count showblock">
-            <label>Phone:</label>
+            <label>Image:</label>
             <input
               disabled={enabled}
-              name="phone"
-              value={selecteditem.phone}
+              name="image"
+              value={selecteditem.image}
               onChange={editInput}
               type="text"
             />
@@ -135,30 +135,13 @@ const Info = ({ showmodal, setShowModal, selecteditem, setSelectedItem }) => {
             </div>
           </div>
           <div className="product-count showblock">
-            <label>Total_Expenses:</label>
+            <label>Rating:</label>
             <input
               disabled={enabled}
-              name="total_spend"
-              value={selecteditem.total_spend}
+              name="rating"
+              value={selecteditem.rating.rate}
               onChange={editInput}
               type="text"
-            />
-            <div
-              onClick={() => setEnabled(!enabled)}
-              className="modal-editicon"
-            >
-              Edit
-              <RiPencilFill className="icon-pencil" />
-            </div>
-          </div>
-          <div className="product-count showblock">
-            <label>Total_Orders:</label>
-            <input
-              disabled={enabled}
-              name="total_orders"
-              value={selecteditem.total_orders}
-              onChange={editInput}
-              type="number"
             />
             <div
               onClick={() => setEnabled(!enabled)}

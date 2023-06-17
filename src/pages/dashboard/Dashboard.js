@@ -4,8 +4,7 @@ import { LuShoppingCart } from "react-icons/lu";
 import ApexCharts from "react-apexcharts";
 import { LangContext } from "../../context/LanguageProvider";
 const Dashboard = () => {
-
-  const {language,weblanguages} =useContext(LangContext)
+  const { language, weblanguages } = useContext(LangContext);
 
   const statistics = [
     {
@@ -30,7 +29,7 @@ const Dashboard = () => {
     },
   ];
 
-  const [options] =useState({
+  const [options] = useState({
     series: [
       {
         name: "Online Customer",
@@ -74,14 +73,10 @@ const Dashboard = () => {
     localStorage.setItem("localization", language);
   }, [language]);
 
-
-
-
   return (
     <section className="dashboard">
-     
       <div className="dashboard-header">
-        <h3>{weblanguages[language].dashboard}</h3>
+        <h3>{weblanguages[language]?.dashboard}</h3>
       </div>
       <div className="container-fluid">
         <div className="row">
@@ -99,11 +94,16 @@ const Dashboard = () => {
             ))}
           </div>
           <div className="col-6 editapex">
-            <ApexCharts className="editheightapex" options={options} series={options.series} type="line" width={550}/>
+            <ApexCharts
+              className="editheightapex"
+              options={options}
+              series={options.series}
+              type="line"
+              width={550}
+            />
           </div>
         </div>
       </div>
-      
     </section>
   );
 };
