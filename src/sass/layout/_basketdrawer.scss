@@ -1,7 +1,9 @@
 .cart-overlay {
   .cart-container {
+    overflow-y: scroll;
     .cart-header {
       padding-bottom: 30px;
+      
     }
     .cardlist {
       display: flex;
@@ -10,9 +12,9 @@
       flex-direction: column;
       margin-top: 2rem;
       .card {
-        width: 70%;
-        height: 30%;
-        margin: 0 auto 20px;
+        margin: 0 0 20px;
+        display: flex;
+        flex-direction: row;
         img{
           padding: 10px;
         }

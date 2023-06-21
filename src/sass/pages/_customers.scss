@@ -1,11 +1,52 @@
 .dashboard-customers {
   padding-top: 40px;
+  .allsearchinputs {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 40px;
+    animation: filterinputs 0.5s backwards;
+    transition: all 0.5s ease-in-out;
+    input {
+      border: none;
+      background-color: #f5f7fa;
+      padding: 10px;
+      border-radius: 5px;
+      margin-right: 20px;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
   .dashboard-header-customers {
     margin: 0 auto;
     padding-bottom: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    .customerheaderrightcontent {
+      display: flex;
+      .deleticon {
+        position: relative;
+        .basket-count {
+          position: absolute;
+          background-color: darkorange;
+          border-radius: 20px;
+          height: 25px;
+          width: 25px;
+          text-align: center;
+          top: -7px;
+          right: -7px;
+          color: white;
+          border: 1px solid white;
+        }
+        .btn {
+          .trashempty {
+            font-size: 22px;
+          }
+        }
+      }
+    }
     .customerheaderleftcontent {
       display: flex;
       justify-content: flex-start;
@@ -63,14 +104,13 @@
             text-align: center;
             height: 50px;
             padding-top: 10px;
-          
 
             a {
               border: 1px solid lightgray;
               padding: 5px 50px;
               border-radius: 5px;
               transition: all 0.3s;
-              &:hover{
+              &:hover {
                 color: white;
                 background-color: deepskyblue;
               }
@@ -87,6 +127,7 @@
         width: 90%;
         box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
         border-radius: 5px;
+        transition: all 0.5s ease;
         tr {
           th {
             padding: 20px 8px;
@@ -152,5 +193,43 @@
     }
   }
 }
-.buttonbgcolor {
+
+@keyframes filterinputs {
+  from {
+    transform: translateY(-60%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+.dark {
+  .dashboard-customers {
+    .dashboard-header-customers {
+      .customerheaderleftcontent {
+        .search {
+          background-color: white;
+        }
+      }
+      .customerheaderrightcontent {
+        .deleticon {
+          .btn {
+            color: black;
+            background-color: white;
+            border-color: white;
+           
+          }
+        }
+        .checkcolumnscustomers{
+          .dropdown{
+            .dropdown-button{
+              &:hover{
+                color: black;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -6,14 +6,20 @@ import InfoModal from "../../components/UI/InfoModal";
 import { BiSearchAlt, BiChevronDown, BiChevronUp } from "react-icons/bi";
 import DeleteModal from "../../components/UI/DeleteModal";
 import { BsReverseListColumnsReverse } from "react-icons/bs";
-import {FiFilter} from "react-icons/fi"
+import { FiFilter } from "react-icons/fi";
+import { CgTrashEmpty } from "react-icons/cg";
 const Customers = () => {
   const { language, weblanguages } = useContext(LangContext);
   const { theme, setTheme, paintcolor, setPaintColor, colors } =useContext(ThemeContext);
   const [selecteditem, setSelectedItem] = useState();
   const [opendeletemodal, setOpenDeleteModal] = useState(false);
-  const [showfilters,SetShowFilters]=useState(false)
-  const [search, setSearch] = useState("");
+  const [showfilters, SetShowFilters] = useState(false);
+  const [searchname, setSearchName] = useState("");
+  const [searchmail, setSearchMail] = useState("");
+  const [searchlocation, setSearchLocation] = useState("");
+  const [searchphone, setSearchPhone] = useState("");
+  const [searchexpenses, setSearchExpenses] = useState("");
+  const [basketdeletecustomers, setBasketDeleteCustomers] = useState([]);
 
   const tableheaders = [
     "ID",
@@ -60,6 +66,22 @@ const Customers = () => {
 
     return () => document.removeEventListener("mousedown", closeOpenDropdown);
   }, []);
+
+  const AddRecycleBin = (e, item) => {
+    if (e.target.checked) {
+      setBasketDeleteCustomers([...basketdeletecustomers, item]);
+    } else {
+      const unchechkedbasket = basketdeletecustomers.filter((customer) => customer.id !== item.id);
+      setBasketDeleteCustomers(unchechkedbasket);
+    }
+  };
+
+  const emptyTrashBasket = () => {
+    const newlist = currentUserData.filter((item) => !basketdeletecustomers.map((customer) => customer.id).includes(item.id));
+    setCurrentUserData(newlist);
+    setBasketDeleteCustomers([])
+    console.log("newlist",newlist)
+  };
 
   const showorhide = (tableheader) => {
     if (showcolumn.includes(tableheader)) {
@@ -149,117 +171,155 @@ const Customers = () => {
             <input
               type="search"
               placeholder="Search by  name"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              value={searchname}
+              onChange={(e) => setSearchName(e.target.value)}
             />
             <BiSearchAlt className="search-icon" />
           </div>
         </div>
-        <div className="checkcolumnscustomers me-5">
-          <div ref={clickOutside} className="dropdown">
-            <div
-              onClick={() => {
-                setShowDropDown(!showDropdDown);
-              }}
-              className="dropdown-button btn"
-            >
-              <BsReverseListColumnsReverse className="columnlist" />
-              Columns
-              {showDropdDown ? (
-                <BiChevronDown className="downarrow" />
-              ) : (
-                <BiChevronUp className="uparrow" />
+        <div className="customerheaderrightcontent">
+          <div onClick={() =>{emptyTrashBasket()}} className="deleticon me-3">
+            {!!basketdeletecustomers.length && (
+              <div className="basket-count">{basketdeletecustomers.length}</div>
+            )}
+            <button className="btn btn-danger">
+              <CgTrashEmpty className="trashempty" />
+            </button>
+          </div>
+          <div className="checkcolumnscustomers me-4">
+            <div ref={clickOutside} className="dropdown">
+              <div
+                onClick={() => {
+                  setShowDropDown(!showDropdDown);
+                }}
+                className="dropdown-button btn"
+              >
+                <BsReverseListColumnsReverse className="columnlist" />
+                Columns
+                {showDropdDown ? (
+                  <BiChevronDown className="downarrow" />
+                ) : (
+                  <BiChevronUp className="uparrow" />
+                )}
+              </div>
+              {showDropdDown && (
+                <div className="dropdown-content dropdownwidth">
+                  <div className="dropdown-item">
+                    <input
+                      type="checkbox"
+                      checked={showcolumn.includes("ID")}
+                      onChange={() => showorhide("ID")}
+                    />
+                    ID
+                  </div>
+                  <div className="dropdown-item">
+                    <input
+                      type="checkbox"
+                      checked={showcolumn.includes("NAME")}
+                      onChange={() => showorhide("NAME")}
+                    />
+                    Name
+                  </div>
+                  <div className="dropdown-item">
+                    <input
+                      type="checkbox"
+                      checked={showcolumn.includes("EMAIL")}
+                      onChange={() => showorhide("EMAIL")}
+                    />
+                    Email
+                  </div>
+                  <div className="dropdown-item">
+                    <input
+                      type="checkbox"
+                      checked={showcolumn.includes("LOCATION")}
+                      onChange={() => showorhide("LOCATION")}
+                    />
+                    Location
+                  </div>
+                  <div className="dropdown-item">
+                    <input
+                      checked={showcolumn.includes("PHONE")}
+                      onChange={() => showorhide("PHONE")}
+                      type="checkbox"
+                    />
+                    Phone
+                  </div>
+                  <div className="dropdown-item">
+                    <input
+                      checked={showcolumn.includes("TOTAL EXPENSES")}
+                      onChange={() => showorhide("TOTAL EXPENSES")}
+                      type="checkbox"
+                    />
+                    Total Expenses
+                  </div>
+                  <div className="dropdown-item">
+                    <input
+                      checked={showcolumn.includes("TOTAL ORDERS")}
+                      onChange={() => showorhide("TOTAL ORDERS")}
+                      type="checkbox"
+                    />
+                    Total Orders
+                  </div>
+                  <div
+                    onClick={() => {
+                      setShowDropDown(!showDropdDown);
+                    }}
+                    className="dropdownsave"
+                  >
+                    <a>Save</a>
+                  </div>
+                </div>
               )}
             </div>
-            {showDropdDown && (
-              <div className="dropdown-content dropdownwidth">
-                <div className="dropdown-item">
-                  <input
-                    type="checkbox"
-                    checked={showcolumn.includes("ID")}
-                    onChange={() => showorhide("ID")}
-                  />
-                  ID
-                </div>
-                <div className="dropdown-item">
-                  <input
-                    type="checkbox"
-                    checked={showcolumn.includes("NAME")}
-                    onChange={() => showorhide("NAME")}
-                  />
-                  Name
-                </div>
-                <div className="dropdown-item">
-                  <input
-                    type="checkbox"
-                    checked={showcolumn.includes("EMAIL")}
-                    onChange={() => showorhide("EMAIL")}
-                  />
-                  Email
-                </div>
-                <div className="dropdown-item">
-                  <input
-                    type="checkbox"
-                    checked={showcolumn.includes("LOCATION")}
-                    onChange={() => showorhide("LOCATION")}
-                  />
-                  Location
-                </div>
-                <div className="dropdown-item">
-                  <input
-                    checked={showcolumn.includes("PHONE")}
-                    onChange={() => showorhide("PHONE")}
-                    type="checkbox"
-                  />
-                  Phone
-                </div>
-                <div className="dropdown-item">
-                  <input
-                    checked={showcolumn.includes("TOTAL EXPENSES")}
-                    onChange={() => showorhide("TOTAL EXPENSES")}
-                    type="checkbox"
-                  />
-                  Total Expenses
-                </div>
-                <div className="dropdown-item">
-                  <input
-                    checked={showcolumn.includes("TOTAL ORDERS")}
-                    onChange={() => showorhide("TOTAL ORDERS")}
-                    type="checkbox"
-                  />
-                  Total Orders
-                </div>
-                <div
-                  onClick={() => {
-                    setShowDropDown(!showDropdDown);
-                  }}
-                  className="dropdownsave"
-                >
-                  <a>Save</a>
-                </div>
-              </div>
-            )}
           </div>
-        </div>
-        <div className="checkcolumnscustomers me-5">
-          <div ref={clickOutside} className="dropdown">
-            <div
-              onClick={() => {
-                SetShowFilters(!showfilters);
-              }}
-              className="dropdown-button btn"
-            >
-              <FiFilter className="columnlist" />
-              Filters
-              {showfilters ? (
-                <BiChevronDown className="downarrow" />
-              ) : (
-                <BiChevronUp className="uparrow" />
-              )}
+          <div className="checkcolumnscustomers me-5">
+            <div className="dropdown">
+              <div
+                onClick={() => {
+                  SetShowFilters(!showfilters);
+                }}
+                className="dropdown-button btn"
+              >
+                <FiFilter className="columnlist" />
+                Filters
+                {showfilters ? (
+                  <BiChevronDown className="downarrow" />
+                ) : (
+                  <BiChevronUp className="uparrow" />
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
+      {showfilters && (
+        <div className="allsearchinputs">
+          <input
+            type="search"
+            placeholder="Search by  mail"
+            value={searchmail}
+            onChange={(e) => setSearchMail(e.target.value)}
+          />
+          <input
+            type="search"
+            placeholder="Search by  location"
+            value={searchlocation}
+            onChange={(e) => setSearchLocation(e.target.value)}
+          />
+          <input
+            type="search"
+            placeholder="Search by  phone"
+            value={searchphone}
+            onChange={(e) => setSearchPhone(e.target.value)}
+          />
+          <input
+            type="search"
+            placeholder="Search by  expenses"
+            value={searchexpenses}
+            onChange={(e) => setSearchExpenses(e.target.value)}
+          />
+        </div>
+      )}
       <div className="container-fluid">
         <div className="row">
           <table className="tablestyle">
@@ -289,48 +349,61 @@ const Customers = () => {
               </tr>
             </thead>
             {currentUserData
-              ?.filter((productitem) =>
-                productitem.name.toLowerCase().includes(search.toLowerCase()) 
+              ?.filter(
+                (productitem) =>
+                  productitem.name
+                    .toLowerCase()
+                    .includes(searchname.toLowerCase()) &&
+                  productitem.email
+                    .toLowerCase()
+                    .includes(searchmail.toLowerCase()) &&
+                  productitem.location
+                    .toLowerCase()
+                    .includes(searchlocation.toLowerCase()) &&
+                  productitem.phone
+                    .toLowerCase()
+                    .includes(searchphone.toLowerCase()) &&
+                  productitem.total_spend
+                    .toLowerCase()
+                    .includes(searchexpenses.toLowerCase())
               )
-              .map((item, index) => (
-                <tbody>
-                  <tr>
-                    {showcolumn.includes("ID") && <td>{item.id}</td>}
-                    {showcolumn.includes("NAME") && <td>{item.name}</td>}
-                    {showcolumn.includes("EMAIL") && <td>{item.email}</td>}
-                    {showcolumn.includes("LOCATION") && (
-                      <td>{item.location}</td>
-                    )}
-                    {showcolumn.includes("PHONE") && <td>{item.phone}</td>}
-                    {showcolumn.includes("TOTAL EXPENSES") && (
-                      <td>{item.total_spend}</td>
-                    )}
-                    {showcolumn.includes("TOTAL ORDERS") && (
-                      <td>{item.total_orders}</td>
-                    )}
-                    <td
-                      onClick={() => {
-                        setShowModal(!showmodal);
-                        setSelectedItem(item);
-                      }}
-                      className="infotableheader"
-                    >
-                      <i className="bi bi-info-circle"></i>
-                    </td>
-                    <td className="deletetableheader">
-                      <button
+              .map((item, index) => {
+                return (
+                  <tbody>
+                    <tr>
+                      {showcolumn.includes("ID") && <td>{item.id}</td>}
+                      {showcolumn.includes("NAME") && <td>{item.name}</td>}
+                      {showcolumn.includes("EMAIL") && <td>{item.email}</td>}
+                      {showcolumn.includes("LOCATION") && (
+                        <td>{item.location}</td>
+                      )}
+                      {showcolumn.includes("PHONE") && <td>{item.phone}</td>}
+                      {showcolumn.includes("TOTAL EXPENSES") && (
+                        <td>{item.total_spend}</td>
+                      )}
+                      {showcolumn.includes("TOTAL ORDERS") && (
+                        <td>{item.total_orders}</td>
+                      )}
+                      <td
                         onClick={() => {
-                          setOpenDeleteModal(!opendeletemodal);
+                          setShowModal(!showmodal);
                           setSelectedItem(item);
                         }}
-                        className="btn btn-danger"
+                        className="infotableheader"
                       >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              ))}
+                        <i className="bi bi-info-circle"></i>
+                      </td>
+                      <td className="deletetableheader">
+                        <input
+                          onChange={(e) => AddRecycleBin(e, item)}
+                          checked={basketdeletecustomers.map((product) => product.id).includes(item.id)}
+                          type="checkbox"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                );
+              })}
           </table>
           <div className="button-list">
             <div className="leftcontent">

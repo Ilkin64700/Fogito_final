@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { LangContext } from "../../context/LanguageProvider";
 import moment from "moment";
+import { Tooltip } from "antd";
 
 const Statistics = () => {
   const barstatistics = {
@@ -128,7 +129,6 @@ const Statistics = () => {
     },
   };
 
-  console.log("barstatistics", barstatistics);
   const { language, weblanguages } = useContext(LangContext);
 
   const [selecteddate, setSelectedDate] = useState([]);
@@ -146,29 +146,22 @@ const Statistics = () => {
     const barstatisticsdatesindex = [];
     for (const index in barstatisticsdates) {
       const dateindex = barstatisticsdates[index];
-      const startdate = moment.unix(dateindex.start).format("Do dddd");
-      const enddate = moment.unix(dateindex.end).format("Do dddd");
+      const startdate = moment.unix(dateindex.start).format("D ddd");
+      // const enddate = moment.unix(dateindex.end).format("Do dddd");
       barstatisticsdatesindex.push(
-        <div className="dates-row" style={{ height: `${dateindex.count}px` }}>
-          <span className="dates-range">{`${startdate}-- ${enddate}`}</span>
+        <div className="dates-row">
+          <span className="dates-range">{`${startdate}`}</span>
         </div>
       );
     }
     return barstatisticsdatesindex;
   };
 
-  // const chartArr = Object.values(barstatistics.data.completed.data)
-
-  const abc = Object.values(barstatistics.data);
-
-  console.log("abc", abc);
-
-  console.log("data.completed.data");
-  //   const barheight = (data, count) => {
-  //     const totalcount = data.count;
-  //     return count / totalcount;
-  //   };
-
+  const maxItems = Object.values(barstatistics.data).reduce(
+    (max, data) => Math.max(max, Object.keys(data.data).length),
+    0
+  );
+  console.log("maxitems",maxItems)
   return (
     <section>
       <div className="dashboard-statistics">
@@ -185,6 +178,7 @@ const Statistics = () => {
                     onChange={showorhidebar}
                     type="checkbox"
                   />
+                  <span className="orangespan"></span>
                   Created
                 </label>
                 <label>
@@ -193,6 +187,7 @@ const Statistics = () => {
                     onChange={showorhidebar}
                     type="checkbox"
                   />
+                  <span className="bluespan"></span>
                   Completed
                 </label>
                 <label>
@@ -201,65 +196,65 @@ const Statistics = () => {
                     onChange={showorhidebar}
                     type="checkbox"
                   />
+                  <span className="redspan"></span>
                   Overdue
                 </label>
               </div>
               <div className="chart">
-                <div className="bar-grouup">
-                  {abc?.map((chartVal) => {
-                    console.log("chr", Object.values(chartVal));
-                    return (
-                      <div className="d-flex" style={{ gap: "20px" }}>
-                        {Object.values(abc[0]?.data)?.map((create) => {
-                          return (
-                            <div>
-                              <div
-                                className="createdbar"
-                                style={{ height: `${create.count}px` }}
-                              >
-                                {create.count}
-                              </div>
-                            
-                            </div>
-                          );
-                        })}
-                        {Object.values(abc[1]?.data)?.map((create) => {
-                          return (
-                            <div>
-                         
-                              {selecteddate.includes("completed") && (
-                                <div className="completedbar" style={{ height: `${create.count}px` }}>{create.count}</div>
-                              )}
-                             
-                            </div>
-                          );
-                        })}
-                        {Object.values(abc[2]?.data)?.map((create) => {
-                          return (
-                            <div>
-                           
-                              {selecteddate.includes("overdue") && (
-                                <div className="overduebar" style={{ height: `${create.count}px` }}>{create.count}</div>
-                              )}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    );
-                  })}
+                <div className="leftchart">
+                  <div className="bar-grouup">
+                    <div className=" barlist">
+                      {Array.from({ length: maxItems }, (_, index) => {
+                        const itemValues = [];
+
+                        for (const dataType in barstatistics.data) {
+                          const dataObject = barstatistics.data[dataType].data;
+                          const item = dataObject[index + 1];
+
+                          if (item) {
+                            const { start, end, count } = item;
+                            itemValues.push({ dataType, start, end, count });
+                          }
+                        }
+                        return (
+                          <div key={index} className="barlistitem">
+                            {itemValues?.map((val) => {
+                              return (
+                                selecteddate.includes(`${val.dataType}`) && (
+                                  <Tooltip
+                                    title={`${val.count} ${val.dataType}`}
+                                  >
+                                    <div
+                                      className={`${val.dataType} barlistitemvalue`}
+                                      style={{
+                                        height: `${val.count + 5}px`,
+                                      }}
+                                    ></div>
+                                  </Tooltip>
+                                )
+                              );
+                            })}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <div className="verticalcounts">
+                    <ul>
+                      <li>40</li>
+                      <li>30</li>
+                      <li>20</li>
+                      <li>10</li>
+                      <li>0</li>
+                    </ul>
+                  </div>
                 </div>
-                <div className="showdates">
-                  <div className="createddates">
-                    {" "}
-                    {displayDates(barstatistics.data.created.data)}
-                  </div>
-                  <div className="completeddates">
-                    {" "}
-                    {displayDates(barstatistics.data.completed.data)}
-                  </div>
-                  <div className="overduedates">
-                    {" "}
-                    {displayDates(barstatistics.data.overdue.data)}
+                <div className="rightchart">
+                  <div className="showdates">
+                    <div className="createddates">
+                      {" "}
+                      {displayDates(barstatistics.data.created.data)}
+                    </div>
                   </div>
                 </div>
               </div>

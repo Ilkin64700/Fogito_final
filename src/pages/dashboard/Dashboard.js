@@ -76,7 +76,7 @@ const Dashboard = () => {
   return (
     <section className="dashboard">
       <div className="dashboard-header">
-        <h3>{weblanguages[language]?.dashboard}</h3>
+        <h3>{weblanguages[language].dashboard}</h3>
       </div>
       <div className="container-fluid">
         <div className="row">

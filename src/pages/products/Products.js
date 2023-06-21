@@ -140,7 +140,8 @@ const Customers = () => {
   return (
     <section className="dashboard-customers">
       <div className="dashboard-header-products">
-        <h3>{weblanguages[language].totalproducts}</h3>
+       <div className="leftcontentproduct">
+       <h3>{weblanguages[language].totalproducts}</h3>
         <div className="search">
           <input
             type="search"
@@ -150,7 +151,9 @@ const Customers = () => {
           />
           <BiSearchAlt className="search-icon" />
         </div>
-        <div className="checkcolumnsproducts ms-5">
+       </div>
+        <div className="rightcontentproduct">
+        <div className="checkcolumnsproducts me-5">
           <div className="basket">
             {!!basket.length && (
               <div className="basket-count">{basket.length}</div>
@@ -159,6 +162,7 @@ const Customers = () => {
               <BiBasket className="basket-icon" />
             </button>
           </div>
+        </div>
         </div>
       </div>
       <div className="container-fluid">
@@ -218,6 +222,7 @@ const Customers = () => {
                       <input type="checkbox"
                       checked={basket.map((product)=>product.id).includes(item.id)}
                       onChange={(e)=>AddBasket(e,item)}
+                      
                       />
                     </td>
                   </tr>

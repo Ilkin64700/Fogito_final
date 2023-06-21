@@ -1,0 +1,134 @@
+.dashboard-statistics .dashboard-header-statistics {
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+.dashboard-statistics .container-fluid .row .wholechart .checkboxes {
+  padding-bottom: 50px;
+  display: flex;
+  justify-content: flex-start;
+}
+.dashboard-statistics .container-fluid .row .wholechart .checkboxes label {
+  padding-right: 15px;
+  display: flex;
+  align-items: center;
+}
+.dashboard-statistics .container-fluid .row .wholechart .checkboxes label input {
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+}
+.dashboard-statistics .container-fluid .row .wholechart .checkboxes label .orangespan {
+  width: 10px;
+  height: 10px;
+  border-radius: 25px;
+  background-color: orange;
+  display: inline-block;
+  margin: 0 5px;
+}
+.dashboard-statistics .container-fluid .row .wholechart .checkboxes label .bluespan {
+  width: 10px;
+  height: 10px;
+  border-radius: 25px;
+  background-color: blue;
+  display: inline-block;
+  margin: 0 5px;
+}
+.dashboard-statistics .container-fluid .row .wholechart .checkboxes label .redspan {
+  width: 10px;
+  height: 10px;
+  border-radius: 25px;
+  background-color: red;
+  display: inline-block;
+  margin: 0 5px;
+}
+.dashboard-statistics .container-fluid .row .wholechart .chart .leftchart {
+  display: flex;
+  height: 25.1rem;
+  width: 98.6%;
+}
+.dashboard-statistics .container-fluid .row .wholechart .chart .leftchart .bar-grouup {
+  height: 25.1rem;
+  width: 98.6%;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+  background-size: 2px 2px, 100px 100px;
+  background-image: linear-gradient(to bottom, transparent 1px, white 1px), linear-gradient(to right, #444 1px, transparent 1px), linear-gradient(to right, transparent 1px, white 1px), linear-gradient(to bottom, #444 1px, transparent 1px);
+}
+.dashboard-statistics .container-fluid .row .wholechart .chart .leftchart .bar-grouup .barlist {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 0 15px;
+}
+.dashboard-statistics .container-fluid .row .wholechart .chart .leftchart .bar-grouup .barlist .barlistitem {
+  display: flex;
+  align-items: end;
+}
+.dashboard-statistics .container-fluid .row .wholechart .chart .leftchart .bar-grouup .barlist .barlistitemvalue {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.dashboard-statistics .container-fluid .row .wholechart .chart .leftchart .bar-grouup .created {
+  background-color: orange;
+  height: 300px;
+  width: 50px;
+  border-radius: 10px;
+  margin-right: 10px;
+  transition: height 0.5s ease;
+  animation: baranimate 0.5s backwards;
+}
+.dashboard-statistics .container-fluid .row .wholechart .chart .leftchart .bar-grouup .completed {
+  background-color: deepskyblue;
+  height: 300px;
+  width: 50px;
+  border-radius: 10px;
+  margin-right: 10px;
+  transition: height 0.5s ease;
+  animation: baranimate 0.5s backwards;
+}
+.dashboard-statistics .container-fluid .row .wholechart .chart .leftchart .bar-grouup .overdue {
+  background-color: pink;
+  height: 300px;
+  width: 50px;
+  border-radius: 10px;
+  margin-right: 10px;
+  transition: height 0.5s ease;
+  animation: baranimate 0.5s backwards;
+}
+.dashboard-statistics .container-fluid .row .wholechart .chart .leftchart .verticalcounts ul {
+  list-style: none;
+}
+.dashboard-statistics .container-fluid .row .wholechart .chart .leftchart .verticalcounts ul li {
+  height: 96px;
+}
+.dashboard-statistics .container-fluid .row .wholechart .chart .rightchart .showdates {
+  padding-top: 10px;
+}
+.dashboard-statistics .container-fluid .row .wholechart .chart .rightchart .showdates .createddates {
+  display: flex;
+  justify-content: space-between;
+  width: 96%;
+  text-align: center;
+}
+.dashboard-statistics .container-fluid .row .wholechart .chart .rightchart .showdates .createddates .dates-row {
+  width: 100%;
+}
+.dashboard-statistics .container-fluid .row .wholechart .chart .rightchart .showdates .createddates .dates-row .dates-range {
+  width: 10%;
+  text-align: center;
+  display: inline-block;
+}
+
+@keyframes baranimate {
+  from {
+    transform: translateY(50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}/*# sourceMappingURL=statistics.css.map */

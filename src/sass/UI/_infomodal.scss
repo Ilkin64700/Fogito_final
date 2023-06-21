@@ -37,10 +37,10 @@
         display: flex;
         justify-content: space-around;
         align-items: baseline;
-        .modal-editicon{
+        .modal-editicon {
           text-decoration: underline;
           cursor: pointer;
-          .icon-pencil{
+          .icon-pencil {
             margin-left: 10px;
           }
         }
@@ -53,13 +53,13 @@
       input {
         border: 1px solid rgba(199, 195, 195, 0.8);
         border-radius: 5px;
-        width:70%;
+        width: 70%;
         padding: 5px 10px;
         &:focus {
           outline: 0;
         }
       }
-      .closebutton{
+      .closebutton {
         text-align: right;
         padding: 20px;
         margin-top: 20px;
@@ -76,5 +76,18 @@
   100% {
     transform: translateY(0%);
     opacity: 1;
+  }
+}
+
+.dark {
+  .addmodal-overlay {
+    .addmodal {
+      background-color: black;
+      .btn {
+        background-color: white;
+        color: black;
+        border-color: white;
+      }
+    }
   }
 }

@@ -1,50 +1,163 @@
+$grid-size: 100px;
+$dash-length: 1px;
+$dash-width: 1px;
+$dash-color: #444;
+$background: white;
+
 .dashboard-statistics {
   .dashboard-header-statistics {
     padding-top: 50px;
+    padding-bottom: 30px;
   }
   .container-fluid {
     .row {
       .wholechart {
         .checkboxes {
           padding-bottom: 50px;
+          display: flex;
+          justify-content: flex-start;
           label {
             padding-right: 15px;
+            display: flex;
+            align-items: center;
+            p {
+            }
             input {
               margin-right: 5px;
+              width: 20px;
+              height: 20px;
+            }
+            .orangespan {
+              width: 10px;
+              height: 10px;
+              border-radius: 25px;
+              background-color: orange;
+              display: inline-block;
+              margin: 0 5px;
+            }
+            .bluespan {
+              width: 10px;
+              height: 10px;
+              border-radius: 25px;
+              background-color: blue;
+              display: inline-block;
+              margin: 0 5px;
+            }
+            .redspan {
+              width: 10px;
+              height: 10px;
+              border-radius: 25px;
+              background-color: red;
+              display: inline-block;
+              margin: 0 5px;
             }
           }
         }
         .chart {
-          .bar-grouup {
+          .leftchart {
             display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            .createdbar {
-              background-color: orange;
-              height: 300px;
-              width: 50px;
-              border-radius: 10px;
-              margin-right: 10px;
-              transition: height 0.5s ease;
-              animation: baranimate 0.5s backwards;
+            height: 25.1rem;
+            width: 98.6%;
+            .bar-grouup {
+              height: 25.1rem;
+              width: 98.6%;
+              overflow: hidden;
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              background-color: $background;
+              background-size: $dash-length * 2 $dash-length * 2,
+                $grid-size $grid-size;
+              background-image: linear-gradient(
+                  to bottom,
+                  transparent $dash-length,
+                  $background $dash-length
+                ),
+                linear-gradient(
+                  to right,
+                  $dash-color $dash-width,
+                  transparent $dash-width
+                ),
+                linear-gradient(
+                  to right,
+                  transparent $dash-length,
+                  $background $dash-length
+                ),
+                linear-gradient(
+                  to bottom,
+                  $dash-color $dash-width,
+                  transparent $dash-width
+                );
+              .barlist {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                height: 100%;
+                padding: 0 15px;
+                .barlistitem {
+                  display: flex;
+                  align-items: end;
+                }
+                .barlistitemvalue {
+                  display: flex;
+                  justify-content: center;
+                  align-items: flex-start;
+                }
+              }
+              .created {
+                background-color: orange;
+                height: 300px;
+                width: 50px;
+                border-radius: 10px;
+                margin-right: 10px;
+                transition: height 0.5s ease;
+                animation: baranimate 0.5s backwards;
+              }
+              .completed {
+                background-color: deepskyblue;
+                height: 300px;
+                width: 50px;
+                border-radius: 10px;
+                margin-right: 10px;
+                transition: height 0.5s ease;
+                animation: baranimate 0.5s backwards;
+              }
+              .overdue {
+                background-color: pink;
+                height: 300px;
+                width: 50px;
+                border-radius: 10px;
+                margin-right: 10px;
+                transition: height 0.5s ease;
+                animation: baranimate 0.5s backwards;
+              }
             }
-            .completedbar {
-              background-color: deepskyblue;
-              height: 300px;
-              width: 50px;
-              border-radius: 10px;
-              margin-right: 10px;
-              transition: height 0.5s ease;
-              animation: baranimate 0.5s backwards;
+            .verticalcounts {
+              ul {
+                list-style: none;
+                li {
+                  height: 96px;
+                }
+              }
             }
-            .overduebar {
-              background-color: pink;
-              height: 300px;
-              width: 50px;
-              border-radius: 10px;
-              margin-right: 10px;
-              transition: height 0.5s ease;
-              animation: baranimate 0.5s backwards;
+          }
+          .rightchart {
+            .showdates {
+              padding-top: 10px;
+              .createddates {
+                display: flex;
+                justify-content: space-between;
+                width: 96%;
+                text-align: center;
+                .dates-row {
+                  width: 100%;
+                  .dates-range {
+                    width: 10%;
+                    text-align: center;
+                    display: inline-block;
+                  }
+                }
+              }
             }
           }
         }
